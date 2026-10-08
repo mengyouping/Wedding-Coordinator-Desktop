@@ -1,0 +1,505 @@
+openapi: 3.1.0
+info:
+  title: Wedding OS 婚礼总指挥 API
+  version: 4.1.0
+  description: >-
+    Wedding OS Schema v4 生产接口契约。管理端使用项目级强类型领域接口、If-Match revision
+    与 Idempotency-Key；公开请帖使用不可预测 Token 匿名访问。ADABAS 正式联调由接入方完成。
+servers:
+  - url: /api
+security:
+  - bearerAuth: []
+tags:
+  - name: Projects
+  - name: Collaboration
+  - name: Finance
+  - name: Execution
+  - name: Governance
+  - name: Attachments
+  - name: PublicInvitation
+
+paths:
+  /wedding/projects:
+    get:
+      tags: [Projects]
+      operationId: listWeddingProjects
+      summary: 查询当前用户可访问的婚礼项目
+      responses:
+        '200': { $ref: '#/components/responses/ProjectListResponse' }
+    post:
+      tags: [Projects]
+      operationId: createWeddingProject
+      summary: 创建或复制婚礼项目
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/CreateProjectRequest' } } }
+      responses:
+        '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+  /wedding/projects/{projectId}:
+    parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+    delete:
+      tags: [Projects]
+      operationId: deleteWeddingProject
+      summary: 删除婚礼项目
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      responses:
+        '200': { $ref: '#/components/responses/EmptyResponse' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+
+  /wedding/projects/{projectId}/snapshot:
+    parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+    get:
+      tags: [Projects]
+      operationId: getWeddingSnapshot
+      summary: 获取 Schema v4 完整项目快照
+      responses:
+        '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      tags: [Projects]
+      operationId: replaceWeddingSnapshot
+      summary: 导入或整体替换项目快照
+      parameters:
+        - $ref: '#/components/parameters/IfMatch'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/WeddingDatabase' } } }
+      responses:
+        '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }
+        '409': { $ref: '#/components/responses/Conflict' }
+
+  /wedding/projects/{projectId}/reset:
+    parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+    post:
+      tags: [Projects]
+      operationId: resetWeddingProject
+      summary: 重置婚礼项目
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      responses:
+        '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }
+
+  /wedding/projects/{projectId}/settings:
+    $ref: '#/components/pathItems/SettingsCollection'
+  /wedding/projects/{projectId}/profile:
+    $ref: '#/components/pathItems/ProfileCollection'
+  /wedding/projects/{projectId}/budget:
+    $ref: '#/components/pathItems/BudgetCollection'
+  /wedding/projects/{projectId}/tasks:
+    $ref: '#/components/pathItems/TasksCollection'
+  /wedding/projects/{projectId}/guests:
+    $ref: '#/components/pathItems/GuestsCollection'
+  /wedding/projects/{projectId}/tables:
+    $ref: '#/components/pathItems/TablesCollection'
+  /wedding/projects/{projectId}/seat-assignments:
+    $ref: '#/components/pathItems/SeatAssignmentsCollection'
+  /wedding/projects/{projectId}/seating-plans:
+    $ref: '#/components/pathItems/SeatingPlansCollection'
+  /wedding/projects/{projectId}/vendors:
+    $ref: '#/components/pathItems/VendorsCollection'
+  /wedding/projects/{projectId}/timeline:
+    $ref: '#/components/pathItems/TimelineCollection'
+  /wedding/projects/{projectId}/invitations:
+    $ref: '#/components/pathItems/InvitationsCollection'
+  /wedding/projects/{projectId}/risks:
+    $ref: '#/components/pathItems/RisksCollection'
+  /wedding/projects/{projectId}/materials:
+    $ref: '#/components/pathItems/MaterialsCollection'
+  /wedding/projects/{projectId}/members:
+    $ref: '#/components/pathItems/MembersCollection'
+  /wedding/projects/{projectId}/quotes:
+    $ref: '#/components/pathItems/QuotesCollection'
+  /wedding/projects/{projectId}/contracts:
+    $ref: '#/components/pathItems/ContractsCollection'
+  /wedding/projects/{projectId}/transactions:
+    $ref: '#/components/pathItems/TransactionsCollection'
+  /wedding/projects/{projectId}/runbook-events:
+    $ref: '#/components/pathItems/RunbookEventsCollection'
+  /wedding/projects/{projectId}/check-ins:
+    $ref: '#/components/pathItems/CheckInsCollection'
+  /wedding/projects/{projectId}/incidents:
+    $ref: '#/components/pathItems/IncidentsCollection'
+
+  /wedding/projects/{projectId}/audit-logs:
+    parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+    get:
+      tags: [Governance]
+      operationId: listWeddingAuditLogs
+      summary: 查询只读审计日志
+      responses:
+        '200': { $ref: '#/components/responses/AuditLogsResponse' }
+
+  /wedding/projects/{projectId}/attachments:
+    parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+    get:
+      tags: [Attachments]
+      operationId: listWeddingAttachments
+      summary: 查询附件元数据
+      responses:
+        '200': { $ref: '#/components/responses/AttachmentsResponse' }
+    put:
+      tags: [Attachments]
+      operationId: replaceWeddingAttachments
+      summary: 保存附件元数据
+      parameters:
+        - $ref: '#/components/parameters/IfMatch'
+        - $ref: '#/components/parameters/IdempotencyKey'
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/AttachmentArray' } } }
+      responses:
+        '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }
+        '409': { $ref: '#/components/responses/Conflict' }
+
+  /wedding/projects/{projectId}/attachments/presign:
+    parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+    post:
+      tags: [Attachments]
+      operationId: createAttachmentPresignedUpload
+      summary: 创建附件预签名上传地址
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/AttachmentPresignRequest' } } }
+      responses:
+        '200': { $ref: '#/components/responses/AttachmentPresignResponse' }
+
+  /wedding/projects/{projectId}/attachments/{attachmentId}/download:
+    parameters:
+      - $ref: '#/components/parameters/ProjectId'
+      - $ref: '#/components/parameters/AttachmentId'
+    get:
+      tags: [Attachments]
+      operationId: getAttachmentDownloadAddress
+      summary: 获取受权限控制的附件下载地址
+      responses:
+        '200': { $ref: '#/components/responses/AttachmentDownloadResponse' }
+        '404': { $ref: '#/components/responses/NotFound' }
+
+  /public/invitations/{token}:
+    parameters: [{ $ref: '#/components/parameters/InvitationToken' }]
+    get:
+      security: []
+      tags: [PublicInvitation]
+      operationId: getPublicInvitation
+      summary: 获取专属公开请帖
+      responses:
+        '200': { $ref: '#/components/responses/PublicInvitationResponse' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '410': { $ref: '#/components/responses/Gone' }
+
+  /public/invitations/{token}/opened:
+    parameters: [{ $ref: '#/components/parameters/InvitationToken' }]
+    post:
+      security: []
+      tags: [PublicInvitation]
+      operationId: markPublicInvitationOpened
+      summary: 记录请帖打开事件
+      responses:
+        '200': { $ref: '#/components/responses/PublicInvitationResponse' }
+
+  /public/invitations/{token}/rsvp:
+    parameters: [{ $ref: '#/components/parameters/InvitationToken' }]
+    post:
+      security: []
+      tags: [PublicInvitation]
+      operationId: submitPublicInvitationRsvp
+      summary: 新增或修改赴约回执
+      parameters: [{ $ref: '#/components/parameters/IdempotencyKey' }]
+      requestBody:
+        required: true
+        content: { application/json: { schema: { $ref: '#/components/schemas/PublicRsvpRequest' } } }
+      responses:
+        '200': { $ref: '#/components/responses/PublicInvitationResponse' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: 由统一身份系统签发的访问令牌；ADABAS 正式联调由接入方完成。
+
+  parameters:
+    ProjectId:
+      name: projectId
+      in: path
+      required: true
+      schema: { type: string, minLength: 1, maxLength: 128 }
+    AttachmentId:
+      name: attachmentId
+      in: path
+      required: true
+      schema: { type: string, minLength: 1, maxLength: 128 }
+    InvitationToken:
+      name: token
+      in: path
+      required: true
+      schema: { type: string, minLength: 8, maxLength: 256 }
+    IfMatch:
+      name: If-Match
+      in: header
+      required: true
+      description: 当前项目 revision；不一致返回 409 ConflictDetail。
+      schema: { type: integer, minimum: 1 }
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema: { type: string, minLength: 8, maxLength: 128 }
+
+  pathItems:
+    SettingsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Projects], operationId: getProjectSettings, summary: 获取项目设置, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' } } }
+      put: { tags: [Projects], operationId: replaceProjectSettings, summary: 更新项目设置, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/ProjectSettings' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    ProfileCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Projects], operationId: getWeddingProfile, summary: 获取婚礼资料, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' } } }
+      put: { tags: [Projects], operationId: replaceWeddingProfile, summary: 更新婚礼资料, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/WeddingProfile' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    BudgetCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Finance], operationId: getWeddingBudget, summary: 获取预算, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' } } }
+      put: { tags: [Finance], operationId: replaceWeddingBudget, summary: 更新预算, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/BudgetData' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    TasksCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Collaboration], operationId: listWeddingTasks, summary: 查询任务, responses: { '200': { $ref: '#/components/responses/TasksResponse' } } }
+      put: { tags: [Collaboration], operationId: replaceWeddingTasks, summary: 批量替换任务, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/TaskArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    GuestsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Collaboration], operationId: listWeddingGuests, summary: 查询宾客, responses: { '200': { $ref: '#/components/responses/GuestsResponse' } } }
+      put: { tags: [Collaboration], operationId: replaceWeddingGuests, summary: 批量替换宾客, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/GuestArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    TablesCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Collaboration], operationId: listWeddingTables, summary: 查询桌位, responses: { '200': { $ref: '#/components/responses/TablesResponse' } } }
+      put: { tags: [Collaboration], operationId: replaceWeddingTables, summary: 批量替换桌位, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/TableArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    SeatAssignmentsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Collaboration], operationId: listWeddingSeatAssignments, summary: 查询排桌关系, responses: { '200': { $ref: '#/components/responses/SeatAssignmentsResponse' } } }
+      put: { tags: [Collaboration], operationId: replaceWeddingSeatAssignments, summary: 批量替换排桌关系, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/SeatAssignmentArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    SeatingPlansCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Collaboration], operationId: listWeddingSeatingPlans, summary: 查询排桌方案, responses: { '200': { $ref: '#/components/responses/SeatingPlansResponse' } } }
+      put: { tags: [Collaboration], operationId: replaceWeddingSeatingPlans, summary: 批量替换排桌方案, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/SeatingPlanArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    VendorsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Finance], operationId: listWeddingVendors, summary: 查询供应商, responses: { '200': { $ref: '#/components/responses/VendorsResponse' } } }
+      put: { tags: [Finance], operationId: replaceWeddingVendors, summary: 批量替换供应商, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/VendorArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    TimelineCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Execution], operationId: listWeddingTimelineItems, summary: 查询婚礼日流程, responses: { '200': { $ref: '#/components/responses/TimelineResponse' } } }
+      put: { tags: [Execution], operationId: replaceWeddingTimelineItems, summary: 批量替换婚礼日流程, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/TimelineArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    InvitationsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Execution], operationId: listWeddingInvitations, summary: 查询电子请帖, responses: { '200': { $ref: '#/components/responses/InvitationsResponse' } } }
+      put: { tags: [Execution], operationId: replaceWeddingInvitations, summary: 批量替换电子请帖, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/InvitationArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    RisksCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Governance], operationId: listWeddingRisks, summary: 查询风险, responses: { '200': { $ref: '#/components/responses/RisksResponse' } } }
+      put: { tags: [Governance], operationId: replaceWeddingRisks, summary: 批量替换风险, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/RiskArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    MaterialsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Execution], operationId: listWeddingMaterials, summary: 查询物料, responses: { '200': { $ref: '#/components/responses/MaterialsResponse' } } }
+      put: { tags: [Execution], operationId: replaceWeddingMaterials, summary: 批量替换物料, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/MaterialArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    MembersCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Collaboration], operationId: listWeddingMembers, summary: 查询项目成员, responses: { '200': { $ref: '#/components/responses/MembersResponse' } } }
+      put: { tags: [Collaboration], operationId: replaceWeddingMembers, summary: 批量替换项目成员, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/MemberArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    QuotesCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Finance], operationId: listWeddingQuotes, summary: 查询报价, responses: { '200': { $ref: '#/components/responses/QuotesResponse' } } }
+      put: { tags: [Finance], operationId: replaceWeddingQuotes, summary: 批量替换报价, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/QuoteArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    ContractsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Finance], operationId: listWeddingContracts, summary: 查询合同, responses: { '200': { $ref: '#/components/responses/ContractsResponse' } } }
+      put: { tags: [Finance], operationId: replaceWeddingContracts, summary: 批量替换合同, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/ContractArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    TransactionsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Finance], operationId: listWeddingTransactions, summary: 查询财务流水, responses: { '200': { $ref: '#/components/responses/TransactionsResponse' } } }
+      put: { tags: [Finance], operationId: replaceWeddingTransactions, summary: 批量替换财务流水, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/TransactionArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    RunbookEventsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Execution], operationId: listWeddingRunbookEvents, summary: 查询作战事件, responses: { '200': { $ref: '#/components/responses/RunbookEventsResponse' } } }
+      put: { tags: [Execution], operationId: replaceWeddingRunbookEvents, summary: 批量替换作战事件, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/RunbookEventArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    CheckInsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Execution], operationId: listWeddingCheckIns, summary: 查询签到记录, responses: { '200': { $ref: '#/components/responses/CheckInsResponse' } } }
+      put: { tags: [Execution], operationId: replaceWeddingCheckIns, summary: 批量替换签到记录, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/CheckInArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+    IncidentsCollection:
+      parameters: [{ $ref: '#/components/parameters/ProjectId' }]
+      get: { tags: [Execution], operationId: listWeddingIncidents, summary: 查询现场异常, responses: { '200': { $ref: '#/components/responses/IncidentsResponse' } } }
+      put: { tags: [Execution], operationId: replaceWeddingIncidents, summary: 批量替换现场异常, parameters: [{ $ref: '#/components/parameters/IfMatch' }, { $ref: '#/components/parameters/IdempotencyKey' }], requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/IncidentArray' } } } }, responses: { '200': { $ref: '#/components/responses/WeddingDatabaseResponse' }, '409': { $ref: '#/components/responses/Conflict' } } }
+
+  schemas:
+    WeddingDatabase: { $ref: './wedding-data.schema.json' }
+    ProjectSettings: { $ref: './wedding-data.schema.json#/$defs/projectSettings' }
+    WeddingProfile: { $ref: './wedding-data.schema.json#/$defs/profile' }
+    BudgetData: { $ref: './wedding-data.schema.json#/$defs/budget' }
+    WeddingTask: { $ref: './wedding-data.schema.json#/$defs/task' }
+    Guest: { $ref: './wedding-data.schema.json#/$defs/guest' }
+    WeddingTable: { $ref: './wedding-data.schema.json#/$defs/table' }
+    SeatAssignment: { $ref: './wedding-data.schema.json#/$defs/seatAssignment' }
+    SeatingPlan: { $ref: './wedding-data.schema.json#/$defs/seatingPlan' }
+    Vendor: { $ref: './wedding-data.schema.json#/$defs/vendor' }
+    TimelineItem: { $ref: './wedding-data.schema.json#/$defs/timeline' }
+    Invitation: { $ref: './wedding-data.schema.json#/$defs/invitation' }
+    Risk: { $ref: './wedding-data.schema.json#/$defs/risk' }
+    Material: { $ref: './wedding-data.schema.json#/$defs/material' }
+    ProjectMember: { $ref: './wedding-data.schema.json#/$defs/member' }
+    Attachment: { $ref: './wedding-data.schema.json#/$defs/attachment' }
+    Quote: { $ref: './wedding-data.schema.json#/$defs/quote' }
+    Contract: { $ref: './wedding-data.schema.json#/$defs/contract' }
+    FinancialTransaction: { $ref: './wedding-data.schema.json#/$defs/transaction' }
+    RunbookEvent: { $ref: './wedding-data.schema.json#/$defs/runbookEvent' }
+    CheckIn: { $ref: './wedding-data.schema.json#/$defs/checkIn' }
+    Incident: { $ref: './wedding-data.schema.json#/$defs/incident' }
+    AuditLog: { $ref: './wedding-data.schema.json#/$defs/auditLog' }
+    TaskArray: { type: array, items: { $ref: '#/components/schemas/WeddingTask' } }
+    GuestArray: { type: array, items: { $ref: '#/components/schemas/Guest' } }
+    TableArray: { type: array, items: { $ref: '#/components/schemas/WeddingTable' } }
+    SeatAssignmentArray: { type: array, items: { $ref: '#/components/schemas/SeatAssignment' } }
+    SeatingPlanArray: { type: array, items: { $ref: '#/components/schemas/SeatingPlan' } }
+    VendorArray: { type: array, items: { $ref: '#/components/schemas/Vendor' } }
+    TimelineArray: { type: array, items: { $ref: '#/components/schemas/TimelineItem' } }
+    InvitationArray: { type: array, items: { $ref: '#/components/schemas/Invitation' } }
+    RiskArray: { type: array, items: { $ref: '#/components/schemas/Risk' } }
+    MaterialArray: { type: array, items: { $ref: '#/components/schemas/Material' } }
+    MemberArray: { type: array, items: { $ref: '#/components/schemas/ProjectMember' } }
+    AttachmentArray: { type: array, items: { $ref: '#/components/schemas/Attachment' } }
+    QuoteArray: { type: array, items: { $ref: '#/components/schemas/Quote' } }
+    ContractArray: { type: array, items: { $ref: '#/components/schemas/Contract' } }
+    TransactionArray: { type: array, items: { $ref: '#/components/schemas/FinancialTransaction' } }
+    RunbookEventArray: { type: array, items: { $ref: '#/components/schemas/RunbookEvent' } }
+    CheckInArray: { type: array, items: { $ref: '#/components/schemas/CheckIn' } }
+    IncidentArray: { type: array, items: { $ref: '#/components/schemas/Incident' } }
+    CreateProjectRequest:
+      type: object
+      additionalProperties: false
+      required: [projectName]
+      properties:
+        projectName: { type: string, minLength: 1, maxLength: 120 }
+        cloneFromProjectId: { type: string, minLength: 1, maxLength: 128 }
+    AttachmentPresignRequest:
+      type: object
+      additionalProperties: false
+      required: [fileName, mimeType, size, sha256]
+      properties:
+        fileName: { type: string, minLength: 1, maxLength: 255 }
+        mimeType: { type: string, minLength: 1, maxLength: 160 }
+        size: { type: integer, minimum: 1, maximum: 52428800 }
+        sha256: { type: string, pattern: '^[a-f0-9]{64}$' }
+    AttachmentPresignView:
+      type: object
+      additionalProperties: false
+      required: [uploadUrl, storageKey, expiresAt]
+      properties:
+        uploadUrl: { type: string, format: uri }
+        storageKey: { type: string }
+        expiresAt: { type: string, format: date-time }
+        headers: { type: object, additionalProperties: { type: string } }
+    AttachmentDownloadView:
+      type: object
+      additionalProperties: false
+      required: [downloadUrl, expiresAt]
+      properties:
+        downloadUrl: { type: string, format: uri }
+        expiresAt: { type: string, format: date-time }
+    PublicRsvpRequest:
+      type: object
+      additionalProperties: false
+      required: [attending, companions, dietary, note]
+      properties:
+        attending: { type: boolean }
+        companions: { type: integer, minimum: 0, maximum: 9 }
+        dietary: { type: string, maxLength: 500 }
+        note: { type: string, maxLength: 1000 }
+    PublicInvitationView:
+      type: object
+      required: [profile, guest, invitation]
+      properties:
+        profile: { $ref: '#/components/schemas/WeddingProfile' }
+        guest: { type: object }
+        invitation: { type: object }
+    ProjectSummary:
+      type: object
+      required: [projectId, projectName, weddingDate, status, archived, lastOpenedAt, revision]
+      properties:
+        projectId: { type: string }
+        projectName: { type: string }
+        groomName: { type: string }
+        brideName: { type: string }
+        weddingDate: { type: string }
+        status: { type: string }
+        archived: { type: boolean }
+        lastOpenedAt: { type: string, format: date-time }
+        revision: { type: integer, minimum: 1 }
+    ConflictDetail:
+      type: object
+      additionalProperties: false
+      required: [remoteRevision, fields, message]
+      properties:
+        remoteRevision: { type: integer, minimum: 1 }
+        fields: { type: array, items: { type: string } }
+        message: { type: string }
+        latestSnapshot: { $ref: '#/components/schemas/WeddingDatabase' }
+    ErrorEnvelope:
+      type: object
+      required: [success, code, message]
+      properties:
+        success: { const: false }
+        code: { type: string }
+        message: { type: string }
+        traceId: { type: string }
+        errors: { type: array, items: { type: string } }
+        data: { $ref: '#/components/schemas/ConflictDetail' }
+
+  responses:
+    WeddingDatabaseResponse:
+      description: 操作成功并返回最新 Schema v4 项目快照
+      content: { application/json: { schema: { type: object, required: [success, code, message, data], properties: { success: { const: true }, code: { type: string }, message: { type: string }, traceId: { type: string }, data: { $ref: '#/components/schemas/WeddingDatabase' } } } } }
+    ProjectListResponse:
+      description: 项目目录
+      content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { type: array, items: { $ref: '#/components/schemas/ProjectSummary' } } } } } }
+    TasksResponse: { description: 任务列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/TaskArray' } } } } } }
+    GuestsResponse: { description: 宾客列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/GuestArray' } } } } } }
+    TablesResponse: { description: 桌位列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/TableArray' } } } } } }
+    SeatAssignmentsResponse: { description: 排桌关系列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/SeatAssignmentArray' } } } } } }
+    SeatingPlansResponse: { description: 排桌方案列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/SeatingPlanArray' } } } } } }
+    VendorsResponse: { description: 供应商列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/VendorArray' } } } } } }
+    TimelineResponse: { description: 流程列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/TimelineArray' } } } } } }
+    InvitationsResponse: { description: 请帖列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/InvitationArray' } } } } } }
+    RisksResponse: { description: 风险列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/RiskArray' } } } } } }
+    MaterialsResponse: { description: 物料列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/MaterialArray' } } } } } }
+    MembersResponse: { description: 成员列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/MemberArray' } } } } } }
+    QuotesResponse: { description: 报价列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/QuoteArray' } } } } } }
+    ContractsResponse: { description: 合同列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/ContractArray' } } } } } }
+    TransactionsResponse: { description: 财务流水列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/TransactionArray' } } } } } }
+    RunbookEventsResponse: { description: 作战事件列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/RunbookEventArray' } } } } } }
+    CheckInsResponse: { description: 签到列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/CheckInArray' } } } } } }
+    IncidentsResponse: { description: 现场异常列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/IncidentArray' } } } } } }
+    AttachmentsResponse: { description: 附件列表, content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/AttachmentArray' } } } } } }
+    AuditLogsResponse:
+      description: 只读审计日志
+      content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { type: array, items: { $ref: '#/components/schemas/AuditLog' } } } } } }
+    PublicInvitationResponse:
+      description: 公开请帖
+      content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/PublicInvitationView' } } } } }
+    AttachmentPresignResponse:
+      description: 预签名上传信息
+      content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/AttachmentPresignView' } } } } }
+    AttachmentDownloadResponse:
+      description: 临时下载地址
+      content: { application/json: { schema: { type: object, required: [success, data], properties: { success: { const: true }, data: { $ref: '#/components/schemas/AttachmentDownloadView' } } } } }
+    EmptyResponse:
+      description: 操作成功
+      content: { application/json: { schema: { type: object, required: [success, code, message], properties: { success: { const: true }, code: { type: string }, message: { type: string } } } } }
+    BadRequest: { description: 参数或数据校验失败, content: { application/json: { schema: { $ref: '#/components/schemas/ErrorEnvelope' } } } }
+    Unauthorized: { description: 未登录或令牌失效, content: { application/json: { schema: { $ref: '#/components/schemas/ErrorEnvelope' } } } }
+    Forbidden: { description: 当前角色无权限, content: { application/json: { schema: { $ref: '#/components/schemas/ErrorEnvelope' } } } }
+    NotFound: { description: 项目或资源不存在, content: { application/json: { schema: { $ref: '#/components/schemas/ErrorEnvelope' } } } }
+    Conflict: { description: revision 或业务状态冲突, content: { application/json: { schema: { $ref: '#/components/schemas/ErrorEnvelope' } } } }
+    Gone: { description: 请帖已失效, content: { application/json: { schema: { $ref: '#/components/schemas/ErrorEnvelope' } } } }

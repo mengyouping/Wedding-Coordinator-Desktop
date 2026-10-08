@@ -1,0 +1,57 @@
+import type { BudgetCategory } from '../../../types/budgetWorkbook';
+
+const primaryRows = [
+  ["cat-01","酒店餐饮",0.4,0.55,"宴会、服务费、酒水、住宿；最先锁定合同"],
+  ["cat-02","婚庆舞美",0.12,0.2,"氛围核心，但不可因临时升级突破红线"],
+  ["cat-03","影像记录",0.08,0.12,"看完整交付，保障收音和后期交期"],
+  ["cat-04","礼服妆造",0.06,0.1,"试穿、改衣、跟妆时长均写入合同"],
+  ["cat-05","仪式内容",0.03,0.08,"控制主持、视频、音乐、彩排的质量"],
+  ["cat-06","宾客接待",0.04,0.08,"伴手礼、长辈答谢、桌卡等随人数波动"],
+  ["cat-07","交通住宿",0.03,0.08,"优先保障老人、孕妇、外地宾客"],
+  ["cat-08","婚前可选",0,0.15,"婚戒、婚纱照建议与婚宴预算分账"],
+  ["cat-09","风险预留",0.1,0.15,"只用于突发，不得先花后补"],
+] as const;
+const secondaryRows = [
+  ["cat-01-01","cat-01","婚宴桌费",1],
+  ["cat-01-02","cat-01","酒水饮品",2],
+  ["cat-01-03","cat-01","场地配套",3],
+  ["cat-01-04","cat-01","宾客住宿",4],
+  ["cat-02-01","cat-02","策划统筹",1],
+  ["cat-02-02","cat-02","视觉设计",2],
+  ["cat-02-03","cat-02","舞台布置",3],
+  ["cat-02-04","cat-02","花艺",4],
+  ["cat-02-05","cat-02","灯光音视频",5],
+  ["cat-02-06","cat-02","迎宾仪式区",6],
+  ["cat-02-07","cat-02","搭建运输",7],
+  ["cat-02-08","cat-02","现场特效",8],
+  ["cat-03-01","cat-03","婚礼摄影",1],
+  ["cat-03-02","cat-03","婚礼摄像",2],
+  ["cat-03-03","cat-03","现场快剪",3],
+  ["cat-03-04","cat-03","后期增值",4],
+  ["cat-04-01","cat-04","新娘礼服",1],
+  ["cat-04-02","cat-04","新郎礼服",2],
+  ["cat-04-03","cat-04","花艺配饰",3],
+  ["cat-05-01","cat-05","主持证婚",1],
+  ["cat-05-02","cat-05","仪式物料",2],
+  ["cat-05-03","cat-05","音乐演出",3],
+  ["cat-05-04","cat-05","影片内容",4],
+  ["cat-05-05","cat-05","流程彩排",5],
+  ["cat-06-01","cat-06","邀请回执",1],
+  ["cat-06-02","cat-06","现场导视",2],
+  ["cat-06-03","cat-06","伴手礼",3],
+  ["cat-06-04","cat-06","长辈答谢",4],
+  ["cat-06-05","cat-06","伴郎伴娘",5],
+  ["cat-06-06","cat-06","儿童关怀",6],
+  ["cat-07-01","cat-07","婚车",1],
+  ["cat-07-02","cat-07","宾客接驳",2],
+  ["cat-07-03","cat-07","交通杂费",3],
+  ["cat-08-01","cat-08","婚戒",1],
+  ["cat-08-02","cat-08","婚纱照",2],
+  ["cat-08-03","cat-08","领证记录",3],
+  ["cat-09-01","cat-09","机动预留金",1],
+] as const;
+
+export const defaultBudgetCategories: BudgetCategory[] = [
+  ...primaryRows.map(([id,name,min,max,guidance],index)=>({id,parentId:'',level:1 as const,name,code:`CAT${String(index+1).padStart(2,'0')}`,sortOrder:index+1,recommendedMinRate:min,recommendedMaxRate:max,guidance,enabled:true})),
+  ...secondaryRows.map(([id,parentId,name,sortOrder])=>({id,parentId,level:2 as const,name,code:id.toUpperCase(),sortOrder,enabled:true}))
+];

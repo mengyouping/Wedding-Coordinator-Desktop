@@ -1,0 +1,6 @@
+import { describe,expect,it } from 'vitest';
+import { calculateBudgetItems,resolveBudgetQuantity,summarizeBudget } from './budgetEngine';
+import type { BudgetItem,BudgetParams } from '../../types/domain';
+const params:BudgetParams={guestCount:100,tableCount:12,seatsPerTable:10,bufferRate:.1,weddingDays:2,totalBudgetCap:100000};
+const items:BudgetItem[]=[{id:'1',category:'餐饮',name:'餐标',unit:'桌',unitPrice:3000,quantity:1,quantityMode:'table',includeBuffer:true,actualAmount:35000,status:'confirmed',note:''},{id:'2',category:'礼品',name:'伴手礼',unit:'份',unitPrice:20,quantity:1,quantityMode:'guest',includeBuffer:false,actualAmount:1800,status:'paid',note:''},{id:'3',category:'执行',name:'执行团队',unit:'天',unitPrice:5000,quantity:1,quantityMode:'day',includeBuffer:false,actualAmount:10000,status:'confirmed',note:''}];
+describe('budgetEngine',()=>{it('解析参数数量并应用缓冲',()=>{expect(resolveBudgetQuantity(items[0]!,params)).toBe(12);expect(calculateBudgetItems(items,params)[0]!.budgetAmount).toBe(39600)});it('生成分类汇总',()=>{const s=summarizeBudget(calculateBudgetItems(items,params),params.totalBudgetCap);expect(s.totalBudget).toBe(51600);expect(s.totalActual).toBe(46800);expect(s.remainingBudget).toBe(53200);expect(s.categories).toHaveLength(3)})});

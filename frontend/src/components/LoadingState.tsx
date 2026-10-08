@@ -1,0 +1,1 @@
+import {Icon} from './Icon';export function LoadingState(){return <div className="loading-state"><div className="loading-ring"><Icon name="sparkles"/></div><strong>正在装载婚礼项目</strong><small>读取 JSON 数据与业务状态…</small></div>}

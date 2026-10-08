@@ -1,0 +1,7 @@
+/* 业务文字必须由 React DOM 输出，主题层只负责视觉，不通过 content 写死页面标题。 */
+:root[data-theme='festival'] .topbar__left span{font-size:8px;color:#9a6755;font-family:var(--font-display);letter-spacing:.12em}
+:root[data-theme='festival'] .topbar__left span:before{content:none}
+:root[data-theme='festival'] .topbar__left strong{font-size:14px;color:#4b1714;font-family:var(--font-display);letter-spacing:.04em}
+:root[data-theme='festival'] .topbar__left strong:before,:root[data-theme='festival'] .topbar__left strong:after{content:none}
+:root[data-theme='festival'] .hero__chips:before{content:none}
+:root[data-theme='festival'] .hero__chips>span:first-child{display:inline-flex}

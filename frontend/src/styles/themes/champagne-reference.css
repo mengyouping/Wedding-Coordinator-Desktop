@@ -1,0 +1,81 @@
+/* 香槟鎏金：黑金礼宾参考图重构，仅在 champagne 主题生效。 */
+:root[data-theme='champagne']{
+  --bg:#f7f1e8;--surface:rgba(255,252,246,.96);--surface-strong:#fffaf2;
+  --sidebar:#171006;--sidebar-text:#f8d894;--text:#2e2114;--muted:#8b7154;
+  --line:rgba(142,96,34,.16);--primary:#ad7622;--primary-2:#efc979;--accent:#68410f;
+  --danger:#a54032;--success:#6e8755;--glow:rgba(190,128,29,.25);--hero-text:#2f210f;
+  --shadow:0 18px 50px rgba(99,63,18,.12);--input:#fffaf1;
+  --font-display:'Songti SC','STSong','Noto Serif SC',serif;
+}
+:root[data-theme='champagne'] body{
+  background:radial-gradient(circle at 60% 0%,rgba(255,255,255,.9),transparent 34rem),repeating-linear-gradient(135deg,rgba(150,102,35,.018) 0 1px,transparent 1px 24px),#f7f1e8;
+}
+:root[data-theme='champagne'] .app-shell::before{
+  background:radial-gradient(circle at 42% 7%,rgba(231,178,79,.13),transparent 25%),linear-gradient(180deg,#1f1609,#0d0803 78%,#231205);
+  border-right-color:rgba(228,177,77,.18);box-shadow:18px 0 54px rgba(38,23,6,.22);
+}
+:root[data-theme='champagne'] .sidebar{
+  color:#f6d589;border-right:1px solid rgba(229,178,79,.19);box-shadow:18px 0 54px rgba(38,23,6,.24);
+  background:radial-gradient(circle at 50% 0%,rgba(228,171,68,.14),transparent 25%),linear-gradient(180deg,#201609,#0c0803 78%,#251304);
+}
+:root[data-theme='champagne'] .sidebar:before{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.34;
+  background:radial-gradient(ellipse at 12% 92%,rgba(237,177,57,.36) 0 2%,transparent 3%),radial-gradient(ellipse at 50% 96%,rgba(237,177,57,.18) 0 8%,transparent 9%),repeating-radial-gradient(circle at 45% 110%,transparent 0 42px,rgba(223,160,43,.11) 43px 44px);
+  mask-image:linear-gradient(to bottom,transparent 0 48%,#000 78%,#000);
+}
+:root[data-theme='champagne'] .sidebar:after{opacity:.08}
+:root[data-theme='champagne'] .sidebar__brand{justify-content:center;padding:4px 8px 24px;border-bottom:1px solid rgba(230,179,79,.2)}
+:root[data-theme='champagne'] .brand-logo{flex-direction:column;text-align:center;gap:7px}
+:root[data-theme='champagne'] .brand-logo__mark{
+  width:80px;height:80px;border-radius:50%;transform:none;border:1px solid #d8a748;
+  background:radial-gradient(circle at 35% 30%,#5b3b11,#261706 58%,#0d0803);
+  box-shadow:0 0 0 5px rgba(218,165,66,.11),0 0 0 7px rgba(218,165,66,.38),0 15px 32px rgba(0,0,0,.34);
+}
+:root[data-theme='champagne'] .brand-logo__mark i,:root[data-theme='champagne'] .brand-logo__mark b{display:none}
+:root[data-theme='champagne'] .brand-logo__mark:before{content:'♛';position:absolute;top:5px;color:#efc56d;font-size:18px;z-index:2}
+:root[data-theme='champagne'] .brand-logo__mark:after{content:'W';position:absolute;inset:19px;display:grid;place-items:center;border:1px solid rgba(242,202,114,.62);border-radius:50%;color:#f1cc7a;font-family:Georgia,serif;font-size:29px;transform:none}
+:root[data-theme='champagne'] .brand-logo strong{font-family:Georgia,var(--font-display);font-size:21px;color:#f1cd80;letter-spacing:.06em}
+:root[data-theme='champagne'] .brand-logo small{font-family:var(--font-display);font-size:10px;color:#d2a455;letter-spacing:.24em;opacity:.9}
+:root[data-theme='champagne'] .nav-group>span{display:flex;align-items:center;gap:9px;color:#c89a45;opacity:.78;font-family:var(--font-display);font-size:10px;letter-spacing:.14em}
+:root[data-theme='champagne'] .nav-group>span:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(213,160,55,.28),transparent)}
+:root[data-theme='champagne'] .nav-group button{color:#e6c170;opacity:.78;min-height:47px;border:1px solid transparent;border-radius:8px}
+:root[data-theme='champagne'] .nav-group button svg{color:#dbad4e}
+:root[data-theme='champagne'] .nav-group button:hover{background:linear-gradient(90deg,rgba(222,163,53,.11),rgba(255,255,255,.02));border-color:rgba(225,172,67,.12)}
+:root[data-theme='champagne'] .nav-group button.is-active{color:#fff2c5;background:radial-gradient(circle at 12% 50%,rgba(255,218,125,.25),transparent 28%),linear-gradient(90deg,rgba(207,139,29,.29),rgba(255,255,255,.025));border-color:rgba(235,185,83,.5);box-shadow:0 0 24px rgba(220,151,30,.18),0 1px 0 rgba(255,243,197,.08) inset}
+:root[data-theme='champagne'] .nav-group button.is-active:before{left:auto;right:8px;top:50%;bottom:auto;width:7px;height:7px;border-radius:50%;transform:translateY(-50%);background:#ffd87e;box-shadow:0 0 14px #ffcc62}
+:root[data-theme='champagne'] .data-source{color:#f3d385;border-color:rgba(227,173,69,.34);background:linear-gradient(135deg,rgba(213,145,32,.2),rgba(255,255,255,.03));box-shadow:0 12px 28px rgba(20,11,2,.3),0 1px 0 rgba(255,240,181,.08) inset}
+:root[data-theme='champagne'] .data-source>svg{color:#efbd58}:root[data-theme='champagne'] .data-source>i{background:#d8a545;box-shadow:0 0 12px #d8a545}
+:root[data-theme='champagne'] .app-stage{background:radial-gradient(circle at 75% 2%,rgba(218,163,55,.08),transparent 32rem),linear-gradient(180deg,rgba(255,255,255,.36),transparent 180px)}
+:root[data-theme='champagne'] .topbar{height:84px;background:rgba(255,251,244,.93);border-bottom:1px solid rgba(143,98,35,.13);box-shadow:0 10px 28px rgba(76,48,14,.045)}
+:root[data-theme='champagne'] .topbar__left span{font-family:Georgia,serif;color:#8a6532;font-size:8px;letter-spacing:.24em}
+:root[data-theme='champagne'] .topbar__left strong{font-family:var(--font-display);font-size:20px;color:#372515}
+:root[data-theme='champagne'] .toolbar-button,:root[data-theme='champagne'] .icon-button{color:#5b3c15;border-color:rgba(158,104,34,.21);background:linear-gradient(180deg,#fffdf9,#fbf3e5);box-shadow:0 8px 20px rgba(102,65,20,.07),0 1px 0 #fff inset}
+:root[data-theme='champagne'] .toolbar-button svg,:root[data-theme='champagne'] .icon-button svg{color:#9c681b}
+:root[data-theme='champagne'] .avatar-button{color:#fff0bd;border:1px solid #e0ad52;background:radial-gradient(circle at 35% 25%,#b57b24,#67400d 66%,#2c1804);box-shadow:0 8px 22px rgba(91,55,9,.28),0 0 0 3px rgba(219,168,69,.14)}
+:root[data-theme='champagne'] .panel{background:linear-gradient(145deg,rgba(255,255,255,.83),transparent 42%),linear-gradient(160deg,#fffdf8,#fbf3e7);border:1px solid rgba(166,113,40,.17);box-shadow:0 13px 34px rgba(111,72,21,.09),0 1px 0 #fff inset;backdrop-filter:none}
+:root[data-theme='champagne'] .panel:before{opacity:.18;background:radial-gradient(circle at 88% 14%,rgba(196,139,38,.16),transparent 24%),repeating-linear-gradient(135deg,transparent 0 18px,rgba(141,91,31,.018) 19px 20px)}
+:root[data-theme='champagne'] .hero{min-height:294px;padding:42px 50px;border-radius:16px;color:#2f200e;border:1px solid rgba(205,147,45,.43);background:radial-gradient(circle at 90% 50%,rgba(255,250,235,.8) 0 15%,transparent 16%),radial-gradient(circle at 88% 50%,rgba(226,171,73,.18) 0 25%,transparent 26%),repeating-radial-gradient(circle at 89% 50%,transparent 0 34px,rgba(183,123,22,.2) 35px 36px),linear-gradient(155deg,rgba(255,255,255,.45),transparent 42%),linear-gradient(115deg,#f6dfb7,#ead09d 55%,#f9ebcb);box-shadow:0 20px 52px rgba(138,89,23,.17)}
+:root[data-theme='champagne'] .hero:before{opacity:.95;background:radial-gradient(ellipse at 3% 18%,transparent 0 40px,rgba(173,116,27,.22) 41px 43px,transparent 44px),radial-gradient(ellipse at 7% 42%,transparent 0 70px,rgba(173,116,27,.18) 71px 72px,transparent 73px),repeating-linear-gradient(120deg,transparent 0 42px,rgba(255,255,255,.18) 43px 44px)}
+:root[data-theme='champagne'] .hero:after{content:'';position:absolute;inset:12px;border:1px solid rgba(180,119,24,.24);border-radius:10px;pointer-events:none;background:linear-gradient(105deg,transparent 0 55%,rgba(255,255,255,.28) 56% 57%,transparent 58%)}
+:root[data-theme='champagne'] .hero__copy .eyebrow{color:#9c681b}
+:root[data-theme='champagne'] .hero__copy h1{color:#30210f;text-shadow:0 1px 0 rgba(255,255,255,.8);font-size:clamp(52px,5vw,74px)}
+:root[data-theme='champagne'] .hero__copy h1 i{color:#c78e2f}
+:root[data-theme='champagne'] .hero__copy p{color:#62471f;opacity:.9}
+:root[data-theme='champagne'] .pulse-chip{border-color:rgba(155,100,22,.25);background:rgba(255,250,236,.58);color:#71501e}
+:root[data-theme='champagne'] .hero__orbit{width:218px;height:218px;border-color:rgba(176,115,25,.42);background:radial-gradient(circle,#fffaf0 0 49%,rgba(245,218,163,.82) 50% 58%,transparent 59%),repeating-conic-gradient(from 0deg,rgba(174,111,16,.42) 0 1deg,transparent 1deg 8deg);box-shadow:0 0 0 9px rgba(255,243,207,.6),0 0 0 12px rgba(180,119,25,.28),0 0 30px 8px rgba(228,176,77,.32)}
+:root[data-theme='champagne'] .hero__orbit:before{inset:17px;border-color:rgba(166,105,18,.28)}
+:root[data-theme='champagne'] .hero__orbit:after{inset:36px;border-color:rgba(166,105,18,.18)}
+:root[data-theme='champagne'] .hero__orbit span{color:#4a2e0c;text-shadow:0 2px 0 #fff}
+:root[data-theme='champagne'] .hero__orbit small{color:#8b5f1d}
+:root[data-theme='champagne'] .hero__orbit i{background:#dca849;box-shadow:0 0 18px 5px rgba(221,169,73,.48)}
+:root[data-theme='champagne'] .stat-card{border-color:rgba(193,132,39,.23);background:linear-gradient(145deg,#fffefb,#fbf2e3)}
+:root[data-theme='champagne'] .stat-card__icon{width:58px;height:58px;border-radius:50%;border:1px solid #d8a647;color:#8f5c11;background:radial-gradient(circle,#fffaf0 0 43%,#f3d99f 44% 55%,#fff8e7 56%);box-shadow:0 0 0 4px rgba(215,164,66,.12),0 7px 18px rgba(143,89,15,.12)}
+:root[data-theme='champagne'] .stat-card>strong{font-family:var(--font-display);font-size:40px;color:#422a0c}
+:root[data-theme='champagne'] .dashboard-card>header{border-bottom-color:rgba(163,109,35,.17)}
+:root[data-theme='champagne'] .command-list>div>b{width:31px;height:31px;display:grid;place-items:center;border:1px solid rgba(186,123,26,.27);border-radius:50%;background:#fff6e6;color:#976117}
+:root[data-theme='champagne'] .budget-bars i b,:root[data-theme='champagne'] .category-cards i b,:root[data-theme='champagne'] .progress i b{background:linear-gradient(90deg,#9d6519,#e6bd6e)}
+:root[data-theme='champagne'] .risk-radar{background:radial-gradient(circle at 16% 55%,rgba(218,167,70,.22),transparent 24%),repeating-radial-gradient(circle at 16% 55%,transparent 0 28px,rgba(180,117,23,.13) 29px 30px);border-radius:12px;padding:8px 16px}
+:root[data-theme='champagne'] .risk-radar>div{margin-left:31%;background:rgba(255,253,248,.72);padding-left:14px;padding-right:14px;border-radius:9px;border:1px solid rgba(166,109,28,.11)}
+:root[data-theme='champagne'] .theme-card--champagne .theme-card__preview{background:linear-gradient(135deg,#171006,#d4a14a,#fff1ca)}
+@media(max-width:1180px){:root[data-theme='champagne'] .brand-logo__mark{width:68px;height:68px}:root[data-theme='champagne'] .hero{padding:34px}:root[data-theme='champagne'] .hero__orbit{width:190px;height:190px}}
+@media(max-width:860px){:root[data-theme='champagne'] .sidebar__brand{justify-content:space-between}:root[data-theme='champagne'] .brand-logo{flex-direction:row;text-align:left}:root[data-theme='champagne'] .brand-logo__mark{width:46px;height:46px}:root[data-theme='champagne'] .brand-logo__mark:before{display:none}:root[data-theme='champagne'] .brand-logo__mark:after{inset:9px;font-size:19px}:root[data-theme='champagne'] .hero{padding:28px}:root[data-theme='champagne'] .risk-radar>div{margin-left:0}}

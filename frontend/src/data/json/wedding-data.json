@@ -1,0 +1,797 @@
+{
+  "schemaVersion": 4,
+  "projectId": "wedding-2026-demo",
+  "revision": 1,
+  "updatedAt": "2030-01-01T00:00:00.000Z",
+  "settings": {
+    "projectName": "示例婚礼（全部为合成演示数据）",
+    "status": "筹备中",
+    "timezone": "Asia/Shanghai",
+    "currency": "CNY",
+    "locale": "zh-CN",
+    "archived": false,
+    "autoLockMinutes": 15,
+    "maskSensitiveByDefault": true,
+    "activeSeatingPlanId": "plan-main"
+  },
+  "profile": {
+    "groomName": "示例新郎",
+    "brideName": "示例新娘",
+    "weddingDate": "2030-12-01",
+    "ceremonyTime": "12:00",
+    "banquetTime": "12:30",
+    "venueName": "示例宴会酒店 · 示例宴会厅",
+    "venueAddress": "示例城市示例路 1 号（虚构地址）",
+    "coordinatorName": "示例协调人",
+    "phone": ""
+  },
+  "members": [
+    {
+      "id": "member-owner",
+      "name": "婚礼总指挥",
+      "email": "",
+      "role": "所有者",
+      "active": true
+    },
+    {
+      "id": "member-bride",
+      "name": "示例新娘",
+      "email": "",
+      "role": "总指挥",
+      "active": true
+    },
+    {
+      "id": "member-helper",
+      "name": "宾客组长",
+      "email": "",
+      "role": "协作者",
+      "active": true
+    }
+  ],
+  "budget": {
+    "params": {
+      "guestCount": 4,
+      "tableCount": 4,
+      "seatsPerTable": 6,
+      "bufferRate": 0.05,
+      "weddingDays": 1,
+      "totalBudgetCap": 10000
+    },
+    "items": [
+      {
+        "id": "b1",
+        "category": "宴会餐饮",
+        "name": "婚宴餐标",
+        "unit": "桌",
+        "unitPrice": 500,
+        "quantity": 1,
+        "quantityMode": "table",
+        "includeBuffer": true,
+        "actualAmount": 300,
+        "status": "confirmed",
+        "note": "合成演示预算项目",
+        "vendorId": "v1",
+        "quoteId": "q1",
+        "contractId": "contract-hotel"
+      },
+      {
+        "id": "b2",
+        "category": "婚礼服务",
+        "name": "策划与花艺",
+        "unit": "项",
+        "unitPrice": 2000,
+        "quantity": 1,
+        "quantityMode": "fixed",
+        "includeBuffer": true,
+        "actualAmount": 200,
+        "status": "confirmed",
+        "note": "合成演示预算项目",
+        "vendorId": "v2",
+        "quoteId": "q2",
+        "contractId": "contract-plan"
+      },
+      {
+        "id": "b3",
+        "category": "影像记录",
+        "name": "双机摄影摄像",
+        "unit": "项",
+        "unitPrice": 1200,
+        "quantity": 1,
+        "quantityMode": "fixed",
+        "includeBuffer": false,
+        "actualAmount": 100,
+        "status": "quoted",
+        "note": "合成演示预算项目",
+        "vendorId": "v3",
+        "quoteId": "q3"
+      },
+      {
+        "id": "b4",
+        "category": "宾客体验",
+        "name": "伴手礼",
+        "unit": "份",
+        "unitPrice": 20,
+        "quantity": 1,
+        "quantityMode": "guest",
+        "includeBuffer": true,
+        "actualAmount": 50,
+        "status": "paid",
+        "note": "合成演示预算项目"
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "id": "t1",
+      "title": "示例筹备任务1",
+      "description": "用于演示任务管理功能。",
+      "owner": "示例协调人",
+      "phase": "进行中",
+      "priority": "P0",
+      "dueDate": "2030-11-01",
+      "category": "场地",
+      "progress": 0,
+      "dependencyIds": [],
+      "checklist": [
+        {
+          "id": "c1",
+          "title": "确认备用厅面积",
+          "done": true
+        },
+        {
+          "id": "c2",
+          "title": "补充天气切换条款",
+          "done": false
+        }
+      ],
+      "reminderAt": "",
+      "relatedRiskIds": [
+        "risk1"
+      ]
+    },
+    {
+      "id": "t2",
+      "title": "示例筹备任务2",
+      "description": "用于演示任务管理功能。",
+      "owner": "示例协调人",
+      "phase": "进行中",
+      "priority": "P0",
+      "dueDate": "2030-11-01",
+      "category": "宾客",
+      "progress": 0,
+      "dependencyIds": [],
+      "checklist": [],
+      "reminderAt": "",
+      "relatedRiskIds": []
+    },
+    {
+      "id": "t3",
+      "title": "示例筹备任务3",
+      "description": "用于演示任务管理功能。",
+      "owner": "示例协调人",
+      "phase": "待启动",
+      "priority": "P0",
+      "dueDate": "2030-11-01",
+      "category": "流程",
+      "progress": 0,
+      "dependencyIds": [
+        "t1"
+      ],
+      "checklist": [],
+      "reminderAt": "",
+      "relatedRiskIds": [
+        "risk2"
+      ]
+    }
+  ],
+  "guests": [
+    {
+      "id": "g1",
+      "name": "示例宾客甲家庭",
+      "side": "共同",
+      "group": "朋友",
+      "householdName": "示例家庭1",
+      "rsvp": "已确认",
+      "companions": 0,
+      "children": 0,
+      "phone": "",
+      "dietary": "",
+      "transportNeed": "",
+      "accommodationNeed": "",
+      "accessibilityNeed": "",
+      "preferredTableIds": [
+        "table-a01"
+      ],
+      "mustSitWithGuestIds": [],
+      "avoidGuestIds": [],
+      "note": "合成演示宾客"
+    },
+    {
+      "id": "g2",
+      "name": "示例宾客乙",
+      "side": "共同",
+      "group": "朋友",
+      "householdName": "示例家庭2",
+      "rsvp": "已确认",
+      "companions": 0,
+      "children": 0,
+      "phone": "",
+      "dietary": "",
+      "transportNeed": "",
+      "accommodationNeed": "",
+      "accessibilityNeed": "",
+      "preferredTableIds": [
+        "table-b01"
+      ],
+      "mustSitWithGuestIds": [],
+      "avoidGuestIds": [],
+      "note": "合成演示宾客"
+    },
+    {
+      "id": "g3",
+      "name": "示例宾客丙家庭",
+      "side": "共同",
+      "group": "朋友",
+      "householdName": "示例家庭3",
+      "rsvp": "已确认",
+      "companions": 0,
+      "children": 0,
+      "phone": "",
+      "dietary": "",
+      "transportNeed": "",
+      "accommodationNeed": "",
+      "accessibilityNeed": "",
+      "preferredTableIds": [
+        "table-a02"
+      ],
+      "mustSitWithGuestIds": [],
+      "avoidGuestIds": [],
+      "note": "合成演示宾客"
+    },
+    {
+      "id": "g4",
+      "name": "示例宾客丁组",
+      "side": "共同",
+      "group": "朋友",
+      "householdName": "示例家庭4",
+      "rsvp": "已确认",
+      "companions": 0,
+      "children": 0,
+      "phone": "",
+      "dietary": "",
+      "transportNeed": "",
+      "accommodationNeed": "",
+      "accessibilityNeed": "",
+      "preferredTableIds": [
+        "table-c01"
+      ],
+      "mustSitWithGuestIds": [],
+      "avoidGuestIds": [],
+      "note": "合成演示宾客"
+    }
+  ],
+  "tables": [
+    {
+      "id": "table-a01",
+      "name": "示例桌位1",
+      "zone": "A区",
+      "capacity": 6,
+      "shape": "圆桌",
+      "status": "已锁定",
+      "note": "合成演示桌位",
+      "tableNo": "A01",
+      "x": 180,
+      "y": 160,
+      "rotation": 0,
+      "accessible": true
+    },
+    {
+      "id": "table-a02",
+      "name": "示例桌位2",
+      "zone": "A区",
+      "capacity": 6,
+      "shape": "圆桌",
+      "status": "已锁定",
+      "note": "合成演示桌位",
+      "tableNo": "A02",
+      "x": 360,
+      "y": 160,
+      "rotation": 0,
+      "accessible": true
+    },
+    {
+      "id": "table-b01",
+      "name": "示例桌位3",
+      "zone": "B区",
+      "capacity": 6,
+      "shape": "圆桌",
+      "status": "编排中",
+      "note": "合成演示桌位",
+      "tableNo": "B01",
+      "x": 180,
+      "y": 340,
+      "rotation": 0,
+      "accessible": false
+    },
+    {
+      "id": "table-c01",
+      "name": "示例桌位4",
+      "zone": "C区",
+      "capacity": 6,
+      "shape": "圆桌",
+      "status": "编排中",
+      "note": "合成演示桌位",
+      "tableNo": "C01",
+      "x": 360,
+      "y": 340,
+      "rotation": 0,
+      "accessible": false
+    }
+  ],
+  "seatAssignments": [
+    {
+      "id": "seat-g1",
+      "guestId": "g1",
+      "tableId": "table-a01",
+      "seatNo": "1",
+      "companionCount": 0
+    },
+    {
+      "id": "seat-g3",
+      "guestId": "g3",
+      "tableId": "table-a02",
+      "seatNo": "1",
+      "companionCount": 0
+    },
+    {
+      "id": "seat-g2",
+      "guestId": "g2",
+      "tableId": "table-b01",
+      "seatNo": "1",
+      "companionCount": 0
+    },
+    {
+      "id": "seat-g4",
+      "guestId": "g4",
+      "tableId": "table-c01",
+      "seatNo": "1",
+      "companionCount": 0
+    }
+  ],
+  "seatingPlans": [
+    {
+      "id": "plan-main",
+      "name": "第一版正式排桌",
+      "active": true,
+      "score": 100,
+      "hardViolations": [],
+      "explanations": [
+        "长辈和无障碍宾客已安排到A区无障碍桌位",
+        "同学组已安排到互动区"
+      ],
+      "assignments": [
+        {
+          "id": "seat-g1",
+          "guestId": "g1",
+          "tableId": "table-a01",
+          "seatNo": "1",
+          "companionCount": 0
+        },
+        {
+          "id": "seat-g3",
+          "guestId": "g3",
+          "tableId": "table-a02",
+          "seatNo": "1",
+          "companionCount": 0
+        },
+        {
+          "id": "seat-g2",
+          "guestId": "g2",
+          "tableId": "table-b01",
+          "seatNo": "1",
+          "companionCount": 0
+        },
+        {
+          "id": "seat-g4",
+          "guestId": "g4",
+          "tableId": "table-c01",
+          "seatNo": "1",
+          "companionCount": 0
+        }
+      ],
+      "createdAt": "2030-07-24T12:00:00.000Z"
+    }
+  ],
+  "vendors": [
+    {
+      "id": "v1",
+      "name": "示例宴会酒店",
+      "category": "场地宴会",
+      "contactName": "示例联系人甲",
+      "phone": "",
+      "contractAmount": 3000,
+      "paidAmount": 300,
+      "nextPaymentDate": "2030-11-01",
+      "status": "执行中",
+      "rating": 5,
+      "riskLevel": "高",
+      "note": "合成演示供应商记录",
+      "payments": [
+        {
+          "id": "vp1",
+          "title": "示例付款节点",
+          "amount": 300,
+          "dueDate": "2030-01-01",
+          "status": "已支付",
+          "invoiceStatus": "未开票"
+        }
+      ],
+      "deliverables": [
+        "宴会厅",
+        "备用厅",
+        "餐饮服务"
+      ],
+      "quoteIds": [
+        "q1"
+      ],
+      "contractIds": [
+        "contract-hotel"
+      ]
+    },
+    {
+      "id": "v2",
+      "name": "示例婚礼策划商",
+      "category": "策划花艺",
+      "contactName": "示例联系人乙",
+      "phone": "",
+      "contractAmount": 2000,
+      "paidAmount": 200,
+      "nextPaymentDate": "2030-11-01",
+      "status": "执行中",
+      "rating": 4,
+      "riskLevel": "中",
+      "note": "合成演示供应商记录",
+      "payments": [
+        {
+          "id": "vp2",
+          "title": "示例付款节点",
+          "amount": 200,
+          "dueDate": "2030-01-01",
+          "status": "已支付",
+          "invoiceStatus": "未开票"
+        }
+      ],
+      "deliverables": [
+        "主舞台",
+        "签到区",
+        "手捧花"
+      ],
+      "quoteIds": [
+        "q2"
+      ],
+      "contractIds": [
+        "contract-plan"
+      ]
+    },
+    {
+      "id": "v3",
+      "name": "示例摄影供应商",
+      "category": "摄影摄像",
+      "contactName": "示例联系人丙",
+      "phone": "",
+      "contractAmount": 1200,
+      "paidAmount": 100,
+      "nextPaymentDate": "2030-11-01",
+      "status": "待签约",
+      "rating": 4,
+      "riskLevel": "中",
+      "note": "合成演示供应商记录",
+      "payments": [
+        {
+          "id": "vp3",
+          "title": "示例付款节点",
+          "amount": 100,
+          "dueDate": "2030-01-01",
+          "status": "已支付",
+          "invoiceStatus": "未开票"
+        }
+      ],
+      "deliverables": [
+        "照片原片",
+        "精修照片",
+        "婚礼影片"
+      ],
+      "quoteIds": [
+        "q3"
+      ],
+      "contractIds": []
+    }
+  ],
+  "timeline": [
+    {
+      "id": "r1",
+      "time": "12:00",
+      "title": "灯光音响与大屏联调",
+      "owner": "示例协调人",
+      "location": "示例宴会厅",
+      "durationMinutes": 45,
+      "status": "待确认",
+      "dependency": "舞台搭建完成",
+      "note": "合成演示流程",
+      "track": "舞台线",
+      "dependencyIds": [],
+      "cue": "全链路联调",
+      "music": "开场音乐",
+      "lockedTime": false,
+      "actualStartAt": "",
+      "actualEndAt": ""
+    },
+    {
+      "id": "r2",
+      "time": "13:00",
+      "title": "婚礼仪式联排",
+      "owner": "示例协调人",
+      "location": "主舞台",
+      "durationMinutes": 50,
+      "status": "待确认",
+      "dependency": "双方父母到场",
+      "note": "合成演示流程",
+      "track": "主流程",
+      "dependencyIds": [
+        "r1"
+      ],
+      "cue": "主持人口令",
+      "music": "仪式歌单",
+      "lockedTime": false,
+      "actualStartAt": "",
+      "actualEndAt": ""
+    },
+    {
+      "id": "r3",
+      "time": "14:00",
+      "title": "婚礼仪式正式开始",
+      "owner": "示例协调人",
+      "location": "主舞台",
+      "durationMinutes": 42,
+      "status": "已确认",
+      "dependency": "宾客入座率90%",
+      "note": "合成演示流程",
+      "track": "主流程",
+      "dependencyIds": [
+        "r2"
+      ],
+      "cue": "全场暗灯",
+      "music": "新人入场曲",
+      "lockedTime": true,
+      "actualStartAt": "",
+      "actualEndAt": ""
+    },
+    {
+      "id": "r4",
+      "time": "15:00",
+      "title": "晚宴开席与敬酒",
+      "owner": "示例协调人",
+      "location": "全场",
+      "durationMinutes": 110,
+      "status": "待确认",
+      "dependency": "仪式结束",
+      "note": "合成演示流程",
+      "track": "宴会线",
+      "dependencyIds": [
+        "r3"
+      ],
+      "cue": "上第一道热菜",
+      "music": "晚宴歌单",
+      "lockedTime": true,
+      "actualStartAt": "",
+      "actualEndAt": ""
+    }
+  ],
+  "invitations": [
+    {
+      "id": "i1",
+      "guestId": "g1",
+      "template": "festival",
+      "salutation": "亲爱的示例宾客甲家庭",
+      "message": "诚邀您与家人见证我们的重要时刻。",
+      "status": "已确认",
+      "sentAt": "2030-01-01T00:00:00.000Z",
+      "openedAt": "2030-01-01T00:00:00.000Z",
+      "respondedAt": "2030-01-01T00:00:00.000Z",
+      "token": "demo-invitation-001"
+    },
+    {
+      "id": "i2",
+      "guestId": "g2",
+      "template": "champagne",
+      "salutation": "示例宾客乙您好",
+      "message": "期待与您分享我们的喜悦。",
+      "status": "已发送",
+      "sentAt": "2030-01-01T00:00:00.000Z",
+      "openedAt": "",
+      "respondedAt": "",
+      "token": "demo-invitation-002"
+    }
+  ],
+  "risks": [
+    {
+      "id": "risk1",
+      "title": "恶劣天气导致场地切换",
+      "category": "天气场地",
+      "probability": 3,
+      "impact": 5,
+      "owner": "总指挥",
+      "trigger": "婚礼前24小时发布暴雨或台风预警",
+      "responsePlan": "启用备用厅并通知全部供应商。",
+      "status": "开放",
+      "dueDate": "2030-07-25",
+      "mitigationTaskIds": [
+        "t1"
+      ],
+      "residualProbability": 2,
+      "residualImpact": 4
+    },
+    {
+      "id": "risk2",
+      "title": "婚礼当天音响故障",
+      "category": "设备",
+      "probability": 2,
+      "impact": 5,
+      "owner": "音控负责人",
+      "trigger": "主调音台、无线麦或功放异常",
+      "responsePlan": "酒店设备与独立备机双路。",
+      "status": "处理中",
+      "dueDate": "2030-08-10",
+      "mitigationTaskIds": [
+        "t3"
+      ],
+      "residualProbability": 1,
+      "residualImpact": 4
+    }
+  ],
+  "materials": [
+    {
+      "id": "m1",
+      "name": "戒指盒",
+      "category": "仪式物料",
+      "quantity": 2,
+      "unit": "个",
+      "owner": "示例协调人",
+      "status": "已验收",
+      "supplier": "示例物料供应商",
+      "expectedDate": "2030-11-01",
+      "checkedQuantity": 0,
+      "boxCode": "DEMO-BOX-1",
+      "note": "合成演示物料",
+      "storageLocation": "示例储存区",
+      "handoverTo": "示例协调人",
+      "transportStatus": "已到场",
+      "returnRequired": true,
+      "returnedQuantity": 0
+    },
+    {
+      "id": "m2",
+      "name": "桌卡与席位卡",
+      "category": "宴会物料",
+      "quantity": 2,
+      "unit": "张",
+      "owner": "示例协调人",
+      "status": "采购中",
+      "supplier": "示例物料供应商",
+      "expectedDate": "2030-11-01",
+      "checkedQuantity": 0,
+      "boxCode": "DEMO-BOX-2",
+      "note": "合成演示物料",
+      "storageLocation": "示例储存区",
+      "handoverTo": "示例协调人",
+      "transportStatus": "未装箱",
+      "returnRequired": false,
+      "returnedQuantity": 0
+    }
+  ],
+  "attachments": [],
+  "quotes": [
+    {
+      "id": "q1",
+      "vendorId": "v1",
+      "budgetItemId": "b1",
+      "title": "酒店宴会报价",
+      "amount": 3000,
+      "validUntil": "2030-11-01",
+      "selected": true,
+      "note": "合成演示报价"
+    },
+    {
+      "id": "q2",
+      "vendorId": "v2",
+      "budgetItemId": "b2",
+      "title": "策划花艺报价",
+      "amount": 2000,
+      "validUntil": "2030-11-01",
+      "selected": true,
+      "note": "合成演示报价"
+    },
+    {
+      "id": "q3",
+      "vendorId": "v3",
+      "budgetItemId": "b3",
+      "title": "双机影像报价",
+      "amount": 1200,
+      "validUntil": "2030-11-01",
+      "selected": true,
+      "note": "合成演示报价"
+    }
+  ],
+  "contracts": [
+    {
+      "id": "contract-hotel",
+      "vendorId": "v1",
+      "budgetItemIds": [
+        "b1"
+      ],
+      "title": "酒店宴会合同",
+      "amount": 3000,
+      "signedAt": "2030-01-01",
+      "status": "履约中",
+      "attachmentIds": [],
+      "note": "合成演示合同，无真实合同效力"
+    },
+    {
+      "id": "contract-plan",
+      "vendorId": "v2",
+      "budgetItemIds": [
+        "b2"
+      ],
+      "title": "婚礼策划与花艺合同",
+      "amount": 2000,
+      "signedAt": "2030-01-01",
+      "status": "履约中",
+      "attachmentIds": [],
+      "note": "合成演示合同，无真实合同效力"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx1",
+      "contractId": "contract-hotel",
+      "vendorId": "v1",
+      "budgetItemId": "b1",
+      "type": "付款",
+      "amount": 300,
+      "occurredAt": "2030-01-01",
+      "invoiceStatus": "未开票",
+      "note": "合成演示付款，无真实交易"
+    },
+    {
+      "id": "tx2",
+      "contractId": "contract-plan",
+      "vendorId": "v2",
+      "budgetItemId": "b2",
+      "type": "付款",
+      "amount": 200,
+      "occurredAt": "2030-01-01",
+      "invoiceStatus": "未开票",
+      "note": "合成演示付款，无真实交易"
+    }
+  ],
+  "runbookEvents": [],
+  "checkIns": [],
+  "incidents": [],
+  "conflicts": [],
+  "outbox": [],
+  "auditLogs": [
+    {
+      "id": "audit-1",
+      "action": "PROJECT_CREATED",
+      "entityType": "project",
+      "entityId": "wedding-2026-demo",
+      "operatorId": "member-owner",
+      "operatorName": "示例协调人",
+      "operatorRole": "所有者",
+      "deviceId": "seed-device",
+      "requestId": "seed-request",
+      "createdAt": "2030-01-01T00:00:00.000Z",
+      "detail": "创建全部由合成样例组成的演示项目"
+    }
+  ]
+}

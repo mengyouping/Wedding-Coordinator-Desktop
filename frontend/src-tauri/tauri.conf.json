@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "婚礼总指挥",
+  "version": "1.0.0",
+  "identifier": "com.mengyouping.wedding-coordinator-desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:18766",
+    "beforeBuildCommand": "npm run quality",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "婚礼总指挥 · 本地版",
+        "width": 1440,
+        "height": 920,
+        "minWidth": 1100,
+        "minHeight": 720,
+        "center": true,
+        "decorations": true,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' customprotocol: asset:; connect-src 'self' ipc: http://ipc.localhost http://localhost:8080 https:; img-src 'self' asset: http://asset.localhost blob: data:; media-src 'self' asset: http://asset.localhost blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; script-src 'self'; worker-src 'self' blob:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis",
+      "msi"
+    ],
+    "category": "Productivity",
+    "shortDescription": "多项目婚礼筹备、现场作战、排桌、合同与财务工具",
+    "longDescription": "Wedding OS v1 覆盖多项目、权限、冲突中心、预算合同、宾客排桌、公开请帖、婚礼日作战、附件、风险与物料的本地优先桌面应用。",
+    "icon": [
+      "icons/icon.ico"
+    ]
+  }
+}

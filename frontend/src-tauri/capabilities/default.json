@@ -1,0 +1,24 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-capability",
+  "description": "婚礼总指挥主窗口能力，仅允许访问应用数据目录中的项目快照、备份、项目附件和本地日志",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "fs:allow-read-text-file",
+    "fs:allow-write-text-file",
+    "fs:allow-read-file",
+    "fs:allow-write-file",
+    "fs:allow-exists",
+    "fs:allow-mkdir",
+    "fs:allow-remove",
+    "log:default",
+    {
+      "identifier": "fs:scope",
+      "allow": [
+        { "path": "$APPDATA/projects" },
+        { "path": "$APPDATA/projects/**" }
+      ]
+    }
+  ]
+}

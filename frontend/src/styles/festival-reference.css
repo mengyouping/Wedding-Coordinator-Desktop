@@ -1,0 +1,138 @@
+/* 盛世囍宴：根据用户提供的红金宫廷参考图重构，仅在 festival 主题生效。 */
+:root[data-theme='festival']{
+  --bg:#f6efe5;--surface:rgba(255,252,245,.96);--surface-strong:#fffaf1;
+  --sidebar:#570609;--sidebar-text:#ffe4a8;--text:#4d1716;--muted:#8f675d;
+  --line:rgba(126,41,29,.14);--primary:#b81518;--primary-2:#e7b457;
+  --accent:#6f070a;--danger:#b61f23;--success:#6f8d54;--glow:rgba(205,42,27,.24);
+  --shadow:0 16px 46px rgba(116,42,23,.12);--hero:#76080c;--hero-text:#ffedbd;--input:#fffaf1;
+  --font-display:'Songti SC','STSong','Noto Serif SC',serif;
+}
+:root[data-theme='festival'] body{
+  background:
+    radial-gradient(circle at 58% 0%,rgba(255,255,255,.92),transparent 34rem),
+    repeating-linear-gradient(135deg,rgba(154,95,47,.018) 0 1px,transparent 1px 28px),#f6efe5;
+}
+:root[data-theme='festival'] .app-shell::before{
+  background:radial-gradient(circle at 50% 0%,rgba(232,185,84,.16),transparent 29%),linear-gradient(180deg,#62070b,#460407);
+  border-right-color:rgba(238,187,85,.22);box-shadow:16px 0 46px rgba(74,5,8,.2);
+}
+:root[data-theme='festival'] .sidebar{
+  color:#ffe1a0;border-right:1px solid rgba(238,187,85,.22);box-shadow:16px 0 46px rgba(74,5,8,.22);
+  background:
+    radial-gradient(ellipse at 18% 96%,rgba(175,18,24,.62) 0 7%,transparent 8%),
+    radial-gradient(ellipse at 42% 100%,rgba(222,47,40,.35) 0 9%,transparent 10%),
+    radial-gradient(ellipse at 78% 94%,rgba(124,7,13,.78) 0 13%,transparent 14%),
+    radial-gradient(circle at 50% 0%,rgba(232,185,84,.15),transparent 28%),linear-gradient(180deg,#62070b,#460407);
+}
+:root[data-theme='festival'] .sidebar:before{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:.25;
+  background:radial-gradient(circle at 15% 14%,transparent 0 62px,rgba(224,171,70,.22) 63px 64px,transparent 65px),
+  repeating-radial-gradient(circle at 50% 8%,transparent 0 35px,rgba(220,166,69,.07) 36px 37px);
+  mask-image:linear-gradient(to bottom,#000,transparent 76%);
+}
+:root[data-theme='festival'] .sidebar:after{opacity:.08}
+:root[data-theme='festival'] .sidebar__brand{justify-content:center;padding:4px 8px 24px;border-bottom:1px solid rgba(232,184,83,.22)}
+:root[data-theme='festival'] .brand-logo{flex-direction:column;gap:7px;text-align:center}
+:root[data-theme='festival'] .brand-logo__mark{
+  width:92px;height:92px;border-radius:50%;transform:none;border:1px solid #e3b75e;
+  background:radial-gradient(circle,#7f0a0d 0 45%,#a81e1c 46% 54%,#5b0508 55% 100%);
+  box-shadow:0 0 0 6px rgba(226,180,85,.14),0 0 0 8px rgba(231,184,83,.46),0 14px 32px rgba(32,0,0,.34);
+}
+:root[data-theme='festival'] .brand-logo__mark:before{content:'♛';position:absolute;top:7px;color:#f1cf7a;font-size:19px;z-index:2}
+:root[data-theme='festival'] .brand-logo__mark:after{content:'W';position:absolute;inset:23px;display:grid;place-items:center;border:1px solid rgba(244,204,111,.7);border-radius:50%;color:#f5d98e;font-family:Georgia,serif;font-size:30px;transform:none}
+:root[data-theme='festival'] .brand-logo__mark i,:root[data-theme='festival'] .brand-logo__mark b{display:none}
+:root[data-theme='festival'] .brand-logo strong{color:#f4ce78;font-family:var(--font-display);font-size:22px;font-weight:600;letter-spacing:.04em}
+:root[data-theme='festival'] .brand-logo small{color:#d9a94e;font-family:var(--font-display);font-size:11px;letter-spacing:.28em;opacity:.86}
+:root[data-theme='festival'] .nav-group>span{display:flex;align-items:center;gap:10px;color:#c9953e;opacity:.8;font-family:var(--font-display);font-size:10px;letter-spacing:.16em}
+:root[data-theme='festival'] .nav-group>span:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(224,174,72,.35),transparent)}
+:root[data-theme='festival'] .nav-group button{color:#f6d98f;opacity:.82;min-height:47px;border:1px solid transparent;border-radius:9px}
+:root[data-theme='festival'] .nav-group button svg{color:#efc562}
+:root[data-theme='festival'] .nav-group button:hover{background:linear-gradient(90deg,rgba(226,174,66,.13),rgba(255,255,255,.025));border-color:rgba(231,183,78,.17)}
+:root[data-theme='festival'] .nav-group button.is-active{
+  color:#fff1bd;background:radial-gradient(circle at 12% 50%,rgba(255,231,170,.2),transparent 25%),linear-gradient(90deg,rgba(224,165,58,.25),rgba(255,255,255,.04));
+  border-color:rgba(244,199,100,.4);box-shadow:0 0 0 1px rgba(255,236,178,.06) inset,0 8px 24px rgba(46,0,0,.2),0 0 24px rgba(227,168,59,.13);
+}
+:root[data-theme='festival'] .nav-group button.is-active:before{left:auto;right:8px;top:50%;bottom:auto;width:7px;height:7px;border-radius:50%;transform:translateY(-50%);background:#ffd889;box-shadow:0 0 14px #ffc85a}
+:root[data-theme='festival'] .data-source{padding:15px 13px;color:#ffe4a0;border-color:rgba(238,190,87,.35);background:linear-gradient(135deg,rgba(226,168,59,.19),rgba(255,255,255,.035));box-shadow:0 10px 26px rgba(39,0,0,.25),0 0 0 1px rgba(255,235,177,.05) inset}
+:root[data-theme='festival'] .data-source>svg{color:#f0c664}:root[data-theme='festival'] .data-source>i{background:#efc461;box-shadow:0 0 12px #efc461}
+:root[data-theme='festival'] .app-stage{background:radial-gradient(circle at 82% 3%,rgba(216,160,58,.08),transparent 30rem),linear-gradient(180deg,rgba(255,255,255,.34),transparent 180px)}
+:root[data-theme='festival'] .topbar{height:84px;background:rgba(255,250,242,.92);border-bottom:1px solid rgba(137,61,42,.12);box-shadow:0 10px 30px rgba(103,48,27,.045)}
+:root[data-theme='festival'] .topbar__left:before{content:'♛';width:38px;height:38px;display:grid;place-items:center;color:#c69033;font-size:23px;border-radius:50%;background:radial-gradient(circle,#fff8dc,#f4e2b9 70%,transparent 71%)}
+:root[data-theme='festival'] .topbar__left span{font-size:0;color:#9a6755;font-family:var(--font-display);letter-spacing:.12em}
+:root[data-theme='festival'] .topbar__left span:before{content:'全局统筹 · 进度掌控 · 风险预警';font-size:10px}
+:root[data-theme='festival'] .topbar__left strong{font-size:0;color:#4b1714;font-family:var(--font-display);letter-spacing:.04em}
+:root[data-theme='festival'] .topbar__left strong:before{content:'婚礼指挥中心';font-size:20px}
+:root[data-theme='festival'] .topbar__left strong:after{content:' · 指挥中心';font-family:var(--font-ui);font-size:11px;color:#9a6755;margin-left:6px}
+:root[data-theme='festival'] .toolbar-button,:root[data-theme='festival'] .icon-button{color:#7a2a20;border-color:rgba(142,64,42,.16);background:linear-gradient(180deg,#fffdf8,#fbf3e7);box-shadow:0 8px 20px rgba(119,55,28,.065),0 1px 0 #fff inset}
+:root[data-theme='festival'] .toolbar-button svg,:root[data-theme='festival'] .icon-button svg{color:#a75630}
+:root[data-theme='festival'] .avatar-button{color:#ffeab3;border:1px solid #e5ad4e;background:radial-gradient(circle at 35% 25%,#bb3026,#820b0d 65%,#5d0507);box-shadow:0 8px 22px rgba(131,13,12,.28),0 0 0 3px rgba(222,171,72,.12)}
+:root[data-theme='festival'] .main-content{padding-top:24px}
+:root[data-theme='festival'] .panel{background:linear-gradient(145deg,rgba(255,255,255,.8),transparent 42%),linear-gradient(160deg,#fffdf8,#fbf3e7);border:1px solid rgba(154,75,43,.14);box-shadow:0 13px 34px rgba(116,47,23,.09),0 1px 0 #fff inset;backdrop-filter:none}
+:root[data-theme='festival'] .panel:before{opacity:.16;background:radial-gradient(circle at 88% 14%,rgba(202,150,55,.16),transparent 24%),repeating-linear-gradient(135deg,transparent 0 16px,rgba(141,78,44,.018) 17px 18px)}
+:root[data-theme='festival'] .hero{
+  min-height:292px;padding:40px 48px;border-radius:18px;color:#ffe9ad;border:1px solid rgba(246,197,91,.42);
+  background:
+    radial-gradient(ellipse at 95% 92%,#6e080d 0 10%,transparent 11%),
+    radial-gradient(ellipse at 91% 85%,#99131a 0 13%,transparent 14%),
+    radial-gradient(ellipse at 99% 72%,#c92a25 0 9%,transparent 10%),
+    radial-gradient(circle at 74% 45%,rgba(255,221,126,.22),transparent 18%),
+    linear-gradient(165deg,transparent 0 52%,rgba(255,178,45,.38) 53% 55%,transparent 56%),
+    linear-gradient(172deg,transparent 0 61%,rgba(255,207,91,.55) 62% 64%,transparent 65%),
+    linear-gradient(115deg,#68070a 0%,#8f0d10 56%,#bb1f1d 100%);
+  box-shadow:0 20px 45px rgba(104,12,10,.25),0 0 0 5px rgba(255,233,171,.05) inset;overflow:hidden;
+}
+:root[data-theme='festival'] .hero:before{opacity:1;background:radial-gradient(circle at 76% 25%,rgba(255,228,143,.38) 0 1px,transparent 2px) 0 0/28px 28px,linear-gradient(105deg,rgba(255,255,255,.04),transparent 44%)}
+:root[data-theme='festival'] .hero:after{inset:8px;border:1px solid rgba(244,196,94,.42);border-radius:12px;box-shadow:0 0 0 3px rgba(88,5,7,.5) inset}
+:root[data-theme='festival'] .hero__copy{max-width:66%;padding-left:14px}
+:root[data-theme='festival'] .hero__copy .eyebrow{color:#e9c36d;font-family:var(--font-display);letter-spacing:.3em}
+:root[data-theme='festival'] .hero__copy h1{color:#ffe9ae;font-family:var(--font-display);font-size:clamp(50px,5.6vw,80px);font-weight:700;letter-spacing:.02em;text-shadow:0 2px 0 #6b0809,0 0 24px rgba(255,200,83,.18)}
+:root[data-theme='festival'] .hero__copy h1 i{color:#d64a32;font-size:.64em;text-shadow:0 1px 0 #430204}
+:root[data-theme='festival'] .hero__copy>p{display:flex;align-items:center;gap:10px;color:#f1ce7d;font-family:var(--font-display);font-size:12px;letter-spacing:.06em}
+:root[data-theme='festival'] .hero__chips{display:flex;align-items:center;gap:10px;margin-top:27px;padding-top:18px;max-width:620px;border-top:1px solid rgba(238,190,88,.34);color:#e6bb63;font-family:var(--font-display);font-size:12px}
+:root[data-theme='festival'] .hero__chips:before{content:'当前阶段：筹备进行中 · 距离婚礼还有'}
+:root[data-theme='festival'] .hero__chips>span:first-child{display:none}
+:root[data-theme='festival'] .hero__chips>b{color:#ffe5a1;font-size:18px;font-family:var(--font-display)}
+:root[data-theme='festival'] .hero__chips>em{color:#e6bb63;font-family:var(--font-display)}
+:root[data-theme='festival'] .hero__chips .pulse-chip{margin-left:auto;color:#ffe5a1;border-color:rgba(244,196,94,.34);background:rgba(255,255,255,.06)}
+:root[data-theme='festival'] .hero__orbit{width:220px;height:220px;margin-right:72px;color:#ffe9a7;border:1px solid rgba(255,220,128,.72);background:radial-gradient(circle at 50% 42%,rgba(255,238,180,.16),transparent 38%),radial-gradient(circle,#8f1112 0 53%,transparent 54%);box-shadow:0 0 0 6px rgba(87,5,7,.72),0 0 0 8px rgba(239,190,81,.75),0 0 0 17px rgba(255,208,101,.11),0 0 38px rgba(255,184,44,.48),0 0 90px rgba(255,79,36,.38)}
+:root[data-theme='festival'] .hero__orbit:before{inset:13px;border:1px dashed rgba(246,204,105,.62)}
+:root[data-theme='festival'] .hero__orbit:after{inset:31px;border:1px solid rgba(246,210,125,.34)}
+:root[data-theme='festival'] .hero__orbit span{margin-top:6px;font-family:var(--font-display);font-size:72px;font-weight:500;letter-spacing:-.03em;text-shadow:0 0 18px rgba(255,205,93,.34)}
+:root[data-theme='festival'] .hero__orbit small{top:142px;color:#e8bc66;font-family:var(--font-display)}
+:root[data-theme='festival'] .stats-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+:root[data-theme='festival'] .stat-card,:root[data-theme='festival'] .stat-card:first-child,:root[data-theme='festival'] .stat-card:nth-child(2),:root[data-theme='festival'] .stat-card:nth-child(3),:root[data-theme='festival'] .stat-card:nth-child(4){grid-column:span 1;min-height:140px;padding:22px 20px;display:grid;grid-template-columns:74px minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:16px;align-items:center;background:radial-gradient(circle at 94% 10%,rgba(216,164,64,.08),transparent 26%),linear-gradient(155deg,#fffdf8,#fbf2e6)}
+:root[data-theme='festival'] .stat-card__icon{grid-row:1/4;width:68px;height:68px;margin:0;color:#ffd47d;border:1px solid #d69b39;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c43b2c,#7a090c 63%,#500406 64%);box-shadow:0 0 0 5px #f4dfb5,0 0 0 7px rgba(184,118,28,.75),0 10px 25px rgba(124,20,12,.22)}
+:root[data-theme='festival'] .stat-card__icon svg{width:30px;height:30px}
+:root[data-theme='festival'] .stat-card>span{align-self:end;color:#6f3028;font-family:var(--font-display);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:none}
+:root[data-theme='festival'] .stat-card>strong{margin:2px 0 5px;color:#8d1113;font-family:var(--font-display);font-size:38px;font-weight:500;letter-spacing:0}
+:root[data-theme='festival'] .stat-card>div:last-child{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+:root[data-theme='festival'] .stat-card small,:root[data-theme='festival'] .stat-card em{font-size:9px;color:#8c6d62}
+:root[data-theme='festival'] .dashboard-grid{grid-template-columns:1fr 1fr;gap:16px}
+:root[data-theme='festival'] .dashboard-card{padding:22px 24px;border-radius:14px}
+:root[data-theme='festival'] .dashboard-card>header{border-bottom:1px solid rgba(156,81,47,.14);padding-bottom:13px}
+:root[data-theme='festival'] .dashboard-card h2{color:#5d211b;font-family:var(--font-display);font-size:21px;letter-spacing:.04em}
+:root[data-theme='festival'] .dashboard-card .eyebrow{color:#b18448;font-family:var(--font-display)}
+:root[data-theme='festival'] .command-list>div{grid-template-columns:34px 1fr auto;padding:13px 0}
+:root[data-theme='festival'] .command-list>div:nth-child(n+5){display:none}
+:root[data-theme='festival'] .command-list>div>b{width:28px;height:28px;display:grid;place-items:center;color:#ffe7aa;background:#8a0d10;border-radius:50%;font-family:var(--font-display);font-size:11px}
+:root[data-theme='festival'] .command-list strong,:root[data-theme='festival'] .budget-bars strong{color:#54201a;font-family:var(--font-display)}
+:root[data-theme='festival'] .priority{font-family:var(--font-display);font-size:11px;background:rgba(159,38,28,.08)}
+:root[data-theme='festival'] .budget-bars i{height:5px;background:#eadcc5}
+:root[data-theme='festival'] .budget-bars i b{background:linear-gradient(90deg,#b92722,#e6ae49)}
+:root[data-theme='festival'] .dashboard-card--wide{grid-column:span 2;display:grid;grid-template-columns:215px minmax(0,1fr);padding:0;overflow:hidden}
+:root[data-theme='festival'] .dashboard-card--wide>header{margin:0;padding:28px 24px;min-height:190px;flex-direction:column;align-items:flex-start;justify-content:flex-start;color:#ffe3a0;border:0;background:radial-gradient(circle at 50% 92%,rgba(229,174,67,.22),transparent 32%),linear-gradient(145deg,#7d0b0e,#500507)}
+:root[data-theme='festival'] .dashboard-card--wide>header .eyebrow,:root[data-theme='festival'] .dashboard-card--wide>header h2,:root[data-theme='festival'] .dashboard-card--wide>header svg{color:#f0c665}
+:root[data-theme='festival'] .dashboard-card--wide>header svg{width:54px;height:54px;margin-top:22px;padding:12px;border:1px solid rgba(238,189,81,.5);border-radius:50%;box-shadow:0 0 0 8px rgba(238,189,81,.08),0 0 30px rgba(238,189,81,.16)}
+:root[data-theme='festival'] .risk-radar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));min-width:0}
+:root[data-theme='festival'] .risk-radar>div{min-height:190px;padding:28px 24px;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto 1fr auto;gap:9px 12px;align-items:start;border-right:1px solid rgba(152,78,43,.14);border-bottom:0}
+:root[data-theme='festival'] .risk-radar>div:nth-child(n+4){display:none}
+:root[data-theme='festival'] .risk-radar>div:last-child{border-right:0}
+:root[data-theme='festival'] .risk-radar>div>span:nth-child(2){grid-column:2;display:block}
+:root[data-theme='festival'] .risk-radar strong{font-family:var(--font-display);font-size:13px;color:#5a211a}
+:root[data-theme='festival'] .risk-radar small{margin-top:9px;line-height:1.75}
+:root[data-theme='festival'] .risk-radar b{grid-column:1;font-family:var(--font-display);font-size:24px;color:#8d1113}
+:root[data-theme='festival'] .risk-radar em{grid-column:2;align-self:end;color:#9a765f}
+:root[data-theme='festival'] .lantern,:root[data-theme='festival'] .firework{display:none}
+@media(max-width:1320px){:root[data-theme='festival'] .hero__orbit{margin-right:34px}:root[data-theme='festival'] .hero__copy{max-width:64%}:root[data-theme='festival'] .stat-card,:root[data-theme='festival'] .stat-card:first-child,:root[data-theme='festival'] .stat-card:nth-child(2),:root[data-theme='festival'] .stat-card:nth-child(3),:root[data-theme='festival'] .stat-card:nth-child(4){grid-template-columns:60px 1fr;padding:18px 16px}:root[data-theme='festival'] .stat-card__icon{width:56px;height:56px}}
+@media(max-width:980px){:root[data-theme='festival'] .stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}:root[data-theme='festival'] .hero__copy{max-width:70%}:root[data-theme='festival'] .hero__orbit{margin-right:0;width:190px;height:190px}:root[data-theme='festival'] .dashboard-card--wide{grid-template-columns:180px 1fr}:root[data-theme='festival'] .risk-radar{grid-template-columns:1fr}:root[data-theme='festival'] .risk-radar>div{min-height:0;border-right:0;border-bottom:1px solid rgba(152,78,43,.14)}}
+@media(max-width:800px){:root[data-theme='festival'] .sidebar__brand{justify-content:space-between}:root[data-theme='festival'] .brand-logo{flex-direction:row;text-align:left}:root[data-theme='festival'] .brand-logo__mark{width:58px;height:58px}:root[data-theme='festival'] .brand-logo__mark:after{font-size:20px;inset:14px}:root[data-theme='festival'] .topbar__left:before{display:none}:root[data-theme='festival'] .hero{padding:30px 26px}:root[data-theme='festival'] .hero__copy{max-width:100%}:root[data-theme='festival'] .hero__copy h1{font-size:42px}:root[data-theme='festival'] .hero__chips{flex-wrap:wrap}:root[data-theme='festival'] .stats-grid{grid-template-columns:1fr}:root[data-theme='festival'] .dashboard-grid{grid-template-columns:1fr}:root[data-theme='festival'] .dashboard-card--wide{grid-column:auto;grid-template-columns:1fr}:root[data-theme='festival'] .dashboard-card--wide>header{min-height:130px}}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0",
+  "exportStack": "frontend",
+  "documentation": "README.md",
+  "services": [
+    {
+      "name": "frontend",
+      "directory": "frontend",
+      "buildCommand": "npm run build",
+      "startCommand": "npm run dev",
+      "healthCheck": {
+        "type": "http",
+        "url": "http://localhost:18766/"
+      }
+    }
+  ]
+}

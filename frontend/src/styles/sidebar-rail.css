@@ -1,0 +1,50 @@
+/* 长页面侧边栏底轨修复：导航本身保持 sticky，底色由应用外壳贯穿完整文档高度。 */
+.app-shell{
+  position:relative;
+  min-height:100dvh;
+  align-items:stretch;
+}
+
+.app-shell::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:278px;
+  min-height:100%;
+  z-index:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.045),transparent 18%),
+    radial-gradient(circle at 18% 0%,color-mix(in srgb,var(--primary),transparent 72%),transparent 36%),
+    color-mix(in srgb,var(--sidebar),#050505 9%);
+  border-right:1px solid rgba(255,255,255,.07);
+  box-shadow:22px 0 70px rgba(18,12,8,.12);
+}
+
+.app-stage{
+  position:relative;
+  z-index:1;
+}
+
+.sidebar{
+  height:100dvh;
+  min-height:100dvh;
+  align-self:start;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.18) transparent;
+}
+
+.sidebar::-webkit-scrollbar{width:5px}
+.sidebar::-webkit-scrollbar-track{background:transparent}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:999px}
+
+@media(max-width:1180px){
+  .app-shell::before{width:235px}
+}
+
+@media(max-width:860px){
+  .app-shell::before{display:none}
+  .sidebar{height:100dvh;min-height:100dvh}
+}

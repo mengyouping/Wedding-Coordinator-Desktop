@@ -1,0 +1,51 @@
+{
+  "name": "wedding-coordinator-desktop",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 18766",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 18766",
+    "test": "vitest run src",
+    "test:watch": "vitest src",
+    "lint": "eslint src tests playwright.config.ts vite.config.ts",
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "routes:check": "vitest run src/services/api/fullBackendContract.test.ts src/services/api/apiContract.test.ts",
+    "e2e:install": "playwright install chromium",
+    "e2e": "playwright test --project=chromium",
+    "e2e:interactions": "playwright test tests/e2e/frontend-interactions.spec.ts --project=chromium",
+    "e2e:a11y": "playwright test tests/e2e/accessibility.spec.ts --project=chromium",
+    "visual:test": "playwright test tests/e2e/theme-visual.spec.ts --project=chromium",
+    "quality": "npm run routes:check && npm run lint && npm run stylelint && npm run test && npm run build",
+    "quality:full": "npm run quality && npm run e2e",
+    "desktop": "tauri dev",
+    "desktop:check": "cargo check --manifest-path src-tauri/Cargo.toml",
+    "desktop:build": "tauri build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "2.8.0",
+    "@tauri-apps/plugin-fs": "2.4.2",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.12.1",
+    "@playwright/test": "1.61.1",
+    "@tauri-apps/cli": "2.8.4",
+    "@types/node": "26.1.1",
+    "@types/react": "19.2.17",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.3",
+    "eslint": "9.39.5",
+    "prettier": "3.9.6",
+    "stylelint": "17.14.1",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.65.0",
+    "vite": "8.1.4",
+    "vitest": "4.1.10"
+  },
+  "license": "SEE LICENSE IN ../LICENSE"
+}

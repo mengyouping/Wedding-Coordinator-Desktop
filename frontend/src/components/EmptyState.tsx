@@ -1,0 +1,1 @@
+import {Icon} from './Icon';export function EmptyState({title='暂无数据',description='可以通过新增按钮创建第一条记录'}:{title?:string;description?:string}){return <div className="empty-state"><Icon name="sparkles"/><strong>{title}</strong><p>{description}</p></div>}

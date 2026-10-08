@@ -1,0 +1,65 @@
+/* 玫瑰花园：法式复古玫瑰参考图重构，仅在 rose 主题生效。 */
+:root[data-theme='rose']{
+  --bg:#f8eee9;--surface:rgba(255,250,246,.96);--surface-strong:#fffaf6;
+  --sidebar:#3d1b23;--sidebar-text:#f6d9cf;--text:#4c2527;--muted:#92706b;
+  --line:rgba(131,68,67,.16);--primary:#a43f55;--primary-2:#deb080;--accent:#6a2835;
+  --danger:#a93449;--success:#6f876d;--glow:rgba(174,74,91,.22);--hero-text:#6f2334;
+  --shadow:0 18px 48px rgba(105,55,50,.12);--input:#fff8f4;
+  --font-display:'Songti SC','STSong','Noto Serif SC',serif;
+}
+:root[data-theme='rose'] body{background:radial-gradient(circle at 64% 0%,rgba(255,255,255,.92),transparent 34rem),repeating-linear-gradient(135deg,rgba(145,78,71,.018) 0 1px,transparent 1px 24px),#f8eee9}
+:root[data-theme='rose'] .app-shell::before{background:radial-gradient(circle at 18% 1%,rgba(218,149,151,.16),transparent 25%),linear-gradient(180deg,#4b222b,#241117 76%,#34161e);border-right-color:rgba(226,169,153,.19);box-shadow:18px 0 52px rgba(57,24,31,.22)}
+:root[data-theme='rose'] .sidebar{color:#f4d8cd;border-right:1px solid rgba(226,169,153,.19);box-shadow:18px 0 52px rgba(57,24,31,.22);background:radial-gradient(circle at 18% 1%,rgba(218,149,151,.16),transparent 25%),linear-gradient(180deg,#4b222b,#241117 76%,#34161e)}
+:root[data-theme='rose'] .sidebar:before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.42;background:radial-gradient(ellipse at 8% 93%,rgba(204,84,104,.48) 0 6%,transparent 7%),radial-gradient(ellipse at 26% 96%,rgba(234,148,151,.34) 0 9%,transparent 10%),radial-gradient(ellipse at 80% 88%,rgba(107,35,51,.8) 0 13%,transparent 14%),radial-gradient(circle at 88% 16%,transparent 0 30px,rgba(226,165,146,.22) 31px 32px,transparent 33px);mask-image:linear-gradient(to bottom,#000 0 25%,transparent 45%,#000 72%,#000)}
+:root[data-theme='rose'] .sidebar:after{opacity:.06}
+:root[data-theme='rose'] .sidebar__brand{justify-content:center;padding:5px 8px 24px;border-bottom:1px solid rgba(226,169,153,.2)}
+:root[data-theme='rose'] .brand-logo{flex-direction:column;text-align:center;gap:7px}
+:root[data-theme='rose'] .brand-logo__mark{width:78px;height:78px;border-radius:50%;transform:none;border:1px solid #d9a68b;background:radial-gradient(circle at 42% 42%,#e7aaa8 0 12%,#9b3d55 13% 31%,#5e2432 32% 57%,#31131a 58%);box-shadow:0 0 0 5px rgba(219,158,143,.12),0 0 0 7px rgba(224,170,153,.35),0 15px 32px rgba(25,4,10,.34)}
+:root[data-theme='rose'] .brand-logo__mark i,:root[data-theme='rose'] .brand-logo__mark b{display:none}
+:root[data-theme='rose'] .brand-logo__mark:before{content:'✦';position:absolute;top:4px;color:#e7bb82;font-size:17px;z-index:2}
+:root[data-theme='rose'] .brand-logo__mark:after{content:'W';position:absolute;inset:19px;display:grid;place-items:center;border:1px solid rgba(240,198,163,.62);border-radius:50%;color:#f1d3b6;font-family:Georgia,serif;font-size:28px;transform:none}
+:root[data-theme='rose'] .brand-logo strong{font-family:Georgia,var(--font-display);font-size:21px;color:#f2d3c6;letter-spacing:.05em}
+:root[data-theme='rose'] .brand-logo small{font-family:var(--font-display);font-size:10px;color:#d9a88f;letter-spacing:.24em;opacity:.92}
+:root[data-theme='rose'] .nav-group>span{display:flex;align-items:center;gap:9px;color:#c99386;opacity:.85;font-family:var(--font-display);font-size:10px;letter-spacing:.14em}
+:root[data-theme='rose'] .nav-group>span:after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(218,154,138,.26),transparent)}
+:root[data-theme='rose'] .nav-group button{color:#ecd0c5;opacity:.78;min-height:47px;border:1px solid transparent;border-radius:9px}
+:root[data-theme='rose'] .nav-group button svg{color:#ddb29b}
+:root[data-theme='rose'] .nav-group button:hover{background:linear-gradient(90deg,rgba(224,146,151,.11),rgba(255,255,255,.02));border-color:rgba(224,162,151,.12)}
+:root[data-theme='rose'] .nav-group button.is-active{color:#fff4ed;background:radial-gradient(circle at 12% 50%,rgba(255,214,201,.22),transparent 28%),linear-gradient(90deg,rgba(177,61,82,.46),rgba(255,255,255,.025));border-color:rgba(232,174,157,.46);box-shadow:0 0 23px rgba(192,79,96,.19),0 1px 0 rgba(255,245,238,.08) inset}
+:root[data-theme='rose'] .nav-group button.is-active:before{left:auto;right:8px;top:50%;bottom:auto;width:7px;height:7px;border-radius:50%;transform:translateY(-50%);background:#ffd9ca;box-shadow:0 0 14px #f4aeaf}
+:root[data-theme='rose'] .data-source{color:#f1d4c8;border-color:rgba(225,161,145,.34);background:linear-gradient(135deg,rgba(174,59,80,.22),rgba(255,255,255,.03));box-shadow:0 12px 28px rgba(35,7,14,.3),0 1px 0 rgba(255,238,229,.07) inset}
+:root[data-theme='rose'] .data-source>svg{color:#e7b39b}:root[data-theme='rose'] .data-source>i{background:#e0a28d;box-shadow:0 0 12px #e0a28d}
+:root[data-theme='rose'] .app-stage{background:radial-gradient(circle at 82% 3%,rgba(190,94,106,.07),transparent 30rem),linear-gradient(180deg,rgba(255,255,255,.38),transparent 180px)}
+:root[data-theme='rose'] .topbar{height:84px;background:rgba(255,248,243,.94);border-bottom:1px solid rgba(136,73,68,.14);box-shadow:0 10px 28px rgba(87,43,39,.045)}
+:root[data-theme='rose'] .topbar__left span{font-family:Georgia,serif;color:#9f7167;font-size:8px;letter-spacing:.24em}
+:root[data-theme='rose'] .topbar__left strong{font-family:var(--font-display);font-size:20px;color:#4c2829}
+:root[data-theme='rose'] .toolbar-button,:root[data-theme='rose'] .icon-button{color:#6d3b3c;border-color:rgba(143,80,72,.18);background:linear-gradient(180deg,#fffdfb,#f9eee8);box-shadow:0 8px 20px rgba(100,48,45,.07),0 1px 0 #fff inset}
+:root[data-theme='rose'] .toolbar-button svg,:root[data-theme='rose'] .icon-button svg{color:#9a4c5c}
+:root[data-theme='rose'] .avatar-button{color:#ffece2;border:1px solid #d69b82;background:radial-gradient(circle at 35% 25%,#b9566c,#7e2e40 66%,#4b1723);box-shadow:0 8px 22px rgba(108,35,51,.26),0 0 0 3px rgba(217,155,133,.13)}
+:root[data-theme='rose'] .panel{background:linear-gradient(145deg,rgba(255,255,255,.86),transparent 42%),linear-gradient(160deg,#fffaf7,#f8ece6);border:1px solid rgba(156,87,78,.16);box-shadow:0 13px 34px rgba(107,53,48,.09),0 1px 0 #fff inset;backdrop-filter:none}
+:root[data-theme='rose'] .panel:before{opacity:.2;background:radial-gradient(circle at 90% 10%,rgba(179,78,96,.13),transparent 23%),repeating-linear-gradient(135deg,transparent 0 18px,rgba(137,70,65,.018) 19px 20px)}
+:root[data-theme='rose'] .hero{min-height:294px;padding:42px 50px;border-radius:16px;color:#6f2334;border:1px solid rgba(184,109,92,.37);background:radial-gradient(ellipse at 5% 84%,rgba(167,58,80,.28) 0 8%,transparent 9%),radial-gradient(ellipse at 10% 74%,rgba(221,148,146,.44) 0 10%,transparent 11%),radial-gradient(ellipse at 95% 84%,rgba(174,60,82,.3) 0 11%,transparent 12%),radial-gradient(circle at 77% 24%,rgba(255,255,255,.75),transparent 19%),linear-gradient(135deg,rgba(255,255,255,.22),transparent 45%),linear-gradient(115deg,#f6dfd7,#edd4c8 58%,#f7e9e2);box-shadow:0 20px 52px rgba(133,68,63,.16)}
+:root[data-theme='rose'] .hero:before{opacity:.95;background:radial-gradient(circle at 8% 34%,transparent 0 50px,rgba(169,94,69,.18) 51px 52px,transparent 53px),radial-gradient(circle at 93% 25%,transparent 0 68px,rgba(171,101,78,.18) 69px 70px,transparent 71px),radial-gradient(ellipse at 52% 100%,rgba(255,255,255,.42),transparent 44%)}
+:root[data-theme='rose'] .hero:after{content:'';position:absolute;inset:12px;border:1px solid rgba(169,99,77,.26);border-radius:10px;pointer-events:none;background:linear-gradient(90deg,rgba(167,72,88,.08),transparent 18%,transparent 82%,rgba(167,72,88,.08))}
+:root[data-theme='rose'] .hero__copy .eyebrow{color:#9d4a59}
+:root[data-theme='rose'] .hero__copy h1{color:#7f263c;text-shadow:0 1px 0 rgba(255,255,255,.8);font-size:clamp(52px,5vw,74px)}
+:root[data-theme='rose'] .hero__copy h1 i{color:#a75361}
+:root[data-theme='rose'] .hero__copy p{color:#76504c;opacity:.92}
+:root[data-theme='rose'] .pulse-chip{border-color:rgba(159,74,87,.24);background:rgba(255,249,245,.58);color:#8d4251}
+:root[data-theme='rose'] .hero__orbit{width:218px;height:218px;border-color:rgba(174,98,80,.38);background:radial-gradient(circle,#fffaf7 0 49%,rgba(238,204,190,.76) 50% 58%,transparent 59%),repeating-conic-gradient(from 0deg,rgba(177,93,74,.38) 0 1deg,transparent 1deg 9deg);box-shadow:0 0 0 9px rgba(255,240,232,.7),0 0 0 12px rgba(175,99,79,.24),0 0 30px 8px rgba(202,111,119,.22)}
+:root[data-theme='rose'] .hero__orbit:before{inset:17px;border-color:rgba(166,89,72,.27)}
+:root[data-theme='rose'] .hero__orbit:after{inset:36px;border-color:rgba(166,89,72,.17)}
+:root[data-theme='rose'] .hero__orbit span{color:#8b3044;text-shadow:0 2px 0 #fff}
+:root[data-theme='rose'] .hero__orbit small{color:#9c5b59}
+:root[data-theme='rose'] .hero__orbit i{background:#d88d91;box-shadow:0 0 18px 5px rgba(216,141,145,.42)}
+:root[data-theme='rose'] .stat-card{border-color:rgba(174,96,86,.21);background:linear-gradient(145deg,#fffdfa,#f8ece7)}
+:root[data-theme='rose'] .stat-card__icon{width:58px;height:58px;border-radius:50%;border:1px solid #d4a184;color:#8f3d4e;background:radial-gradient(circle,#fffaf6 0 42%,#efd3c3 43% 55%,#fff7f2 56%);box-shadow:0 0 0 4px rgba(208,151,129,.12),0 7px 18px rgba(126,58,57,.12)}
+:root[data-theme='rose'] .stat-card>strong{font-family:var(--font-display);font-size:40px;color:#7f2b3f}
+:root[data-theme='rose'] .dashboard-card>header{border-bottom-color:rgba(151,82,74,.15)}
+:root[data-theme='rose'] .command-list>div>b{width:31px;height:31px;display:grid;place-items:center;border:1px solid rgba(169,88,82,.24);border-radius:50%;background:#fff4ef;color:#9c4053}
+:root[data-theme='rose'] .budget-bars i b,:root[data-theme='rose'] .category-cards i b,:root[data-theme='rose'] .progress i b{background:linear-gradient(90deg,#9f3d52,#e7ae9c)}
+:root[data-theme='rose'] .risk-radar{background:radial-gradient(circle at 16% 55%,rgba(191,101,114,.2),transparent 24%),repeating-radial-gradient(circle at 16% 55%,transparent 0 28px,rgba(157,78,83,.12) 29px 30px);border-radius:12px;padding:8px 16px}
+:root[data-theme='rose'] .risk-radar>div{margin-left:31%;background:rgba(255,251,248,.76);padding-left:14px;padding-right:14px;border-radius:9px;border:1px solid rgba(151,82,74,.11)}
+:root[data-theme='rose'] .theme-card--rose .theme-card__preview{background:linear-gradient(135deg,#3d1b23,#b95065,#f1c9ba)}
+@media(max-width:1180px){:root[data-theme='rose'] .brand-logo__mark{width:68px;height:68px}:root[data-theme='rose'] .hero{padding:34px}:root[data-theme='rose'] .hero__orbit{width:190px;height:190px}}
+@media(max-width:860px){:root[data-theme='rose'] .sidebar__brand{justify-content:space-between}:root[data-theme='rose'] .brand-logo{flex-direction:row;text-align:left}:root[data-theme='rose'] .brand-logo__mark{width:46px;height:46px}:root[data-theme='rose'] .brand-logo__mark:before{display:none}:root[data-theme='rose'] .brand-logo__mark:after{inset:9px;font-size:19px}:root[data-theme='rose'] .hero{padding:28px}:root[data-theme='rose'] .risk-radar>div{margin-left:0}}
